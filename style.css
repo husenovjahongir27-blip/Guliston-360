@@ -24,3 +24,77 @@ body.dark .pnlm-controls-container{filter:none}
 body.dark .qrBox{border-color:#30463d}.pannellum-container{background:#10251f}
 @media(max-width:800px){.tourHero{height:620px}.leftPanel{top:15px}.rightPanel{bottom:76px}.scrollNext{display:grid}}
 @media(max-width:520px){.tourHero{height:590px}.leftPanel{top:12px}.panoControls{bottom:55px}.scrollNext{bottom:7px}}
+
+/* ===== V4 PROFESSIONAL TOURISM PLATFORM ===== */
+:root{--green:#087552;--green2:#0b8d59;--blue:#1689c5;--ink:#10241d;--muted:#667a71;--line:#dfe9e4;--surface:#fff;--page:#f5f8f6}
+body{background:var(--page);color:var(--ink)}
+/* Dark mode: explicit overrides prevent black text disappearing */
+body.dark{--page:#07110e;--surface:#10211b;--ink:#eff8f3;--muted:#afc2b9;--line:#2a4037;background:var(--page)!important;color:var(--ink)!important}
+body.dark .topbar,
+body.dark .featureStrip,
+body.dark .contentSection,
+body.dark .contactSection,
+body.dark .servicesSection,
+body.dark .feedbackSection{background:#0c1b16!important;color:var(--ink)!important;border-color:var(--line)!important}
+body.dark .brand,body.dark .brand strong,body.dark .brand small,body.dark .mainNav a{color:var(--ink)!important}
+body.dark .mainNav a.active,body.dark .mainNav a:hover{color:#55c59a!important}
+body.dark .roundBtn,body.dark .langBtn,body.dark .search,body.dark .filters input,body.dark .filters select,
+body.dark .feedbackForm input,body.dark .feedbackForm textarea,body.dark .feedbackForm select{background:#12251f!important;color:#eff8f3!important;border-color:#365046!important}
+body.dark .langMenu,body.dark .langMenu button{background:#12251f!important;color:#eff8f3!important;border-color:#365046!important}
+body.dark .sceneItem,body.dark .placeCard,body.dark .extraGrid article,body.dark .serviceGrid article,
+body.dark .contactGrid a{background:#12251f!important;color:#eff8f3!important;border-color:#30483e!important}
+body.dark .sceneItem small,body.dark .featureStrip small,body.dark .placeBody p,body.dark .mapInfo p,
+body.dark .contactText,body.dark .contactGrid small,body.dark .serviceGrid p,body.dark .feedbackIntro p,
+body.dark .formHint{color:#a9bdb4!important}
+body.dark .placeBody h3,body.dark .serviceGrid h3,body.dark .contactGrid b,body.dark .feedbackForm label,
+body.dark .feedbackForm span{color:#eff8f3!important}
+body.dark .secondaryBtn{background:#19372d!important;color:#7fe0b7!important}
+body.dark .modalBox{background:#10211b!important;color:#eff8f3!important}
+body.dark .modalBox p{color:#b4c7be!important}
+body.dark footer{background:#064e37!important}
+body.dark .qrBox{border-color:#365046!important}
+body.dark .qrBox small{color:#9fb4aa!important}
+/* Prevent inline legacy dark text from becoming invisible */
+body.dark [style*="color:#61746b"],body.dark [style*="color: #61746b"]{color:#b4c7be!important}
+body.dark h1,body.dark h2,body.dark h3,body.dark h4,body.dark p,body.dark label,body.dark small,body.dark span{color:inherit}
+body.dark .eyebrow{color:#55c59a!important}
+body.dark .tag,body.dark .detailTag{background:#183a2e!important;color:#78d8b0!important}
+body.dark .detailText{color:#b4c7be!important}
+body.dark .mapSection{background:#0c1b16!important}
+body.dark .mapInfo h2,body.dark .aboutSection h2,body.dark .sectionHead h2,body.dark .contactSection h2,body.dark .servicesSection h2,.feedbackSection h2{color:#eff8f3!important}
+
+/* More useful platform sections */
+.servicesSection{padding:70px 6%;background:#fff}
+.serviceGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.serviceGrid article{background:#fff;border:1px solid #e0e9e4;border-radius:16px;padding:24px;transition:.2s}
+.serviceGrid article:hover{transform:translateY(-3px);box-shadow:0 14px 35px #17382b12}
+.serviceIcon{width:45px;height:45px;border-radius:13px;display:grid;place-items:center;background:#e6f5ee;color:#087552;margin-bottom:13px}
+.serviceIcon svg{width:21px}
+.serviceGrid h3{font-size:16px;margin:0 0 7px}.serviceGrid p{font-size:11px;color:#687a72;line-height:1.7;margin:0}
+
+/* Feedback */
+.feedbackSection{padding:75px 7%;background:#edf5f1;display:grid;grid-template-columns:.85fr 1.15fr;gap:50px}
+.feedbackIntro h2{font-size:34px;margin:8px 0 12px}.feedbackIntro p{font-size:12px;color:#667a71;line-height:1.8}
+.feedbackNote{display:flex;align-items:center;gap:9px;margin-top:20px;color:#087552;font-weight:800;font-size:12px}.feedbackNote svg{width:18px}
+.feedbackForm{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:25px;box-shadow:0 15px 35px #17382b0a}
+.feedbackForm label{display:block;font-size:11px;font-weight:800;margin-bottom:13px;color:#28453a}.feedbackForm label>span{display:block;margin-bottom:6px}
+.feedbackForm input,.feedbackForm textarea,.feedbackForm select{width:100%;border:1px solid #dce7e1;border-radius:10px;background:#fff;padding:11px 12px;font:inherit;font-size:11px;outline:none;color:#17352a}
+.feedbackForm input:focus,.feedbackForm textarea:focus,.feedbackForm select:focus{border-color:#0b8d59;box-shadow:0 0 0 3px #0b8d5915}
+.feedbackForm textarea{resize:vertical;min-height:130px}.formRow{display:grid;grid-template-columns:1fr 1fr;gap:12px}.submitBtn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:12px}.formHint{display:block;margin-top:10px;color:#718078;font-size:9px;line-height:1.5}
+.socialIcon{width:22px;height:22px;display:grid;place-items:center;color:#c13584}.socialIcon svg{width:22px;height:22px}.instagramIcon{color:#c13584}
+
+/* Contact social cards */
+.contactGrid a{transition:.2s}.contactGrid a:hover .instagramIcon{color:#e1306c}
+.contactGrid a:hover{transform:translateY(-2px)}
+
+/* Better desktop panorama balance */
+.tourHero{height:700px}
+@media(max-width:1100px){.serviceGrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:800px){.tourHero{height:620px}.feedbackSection{grid-template-columns:1fr;gap:25px}.serviceGrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.tourHero{height:590px}.serviceGrid{grid-template-columns:1fr}.formRow{grid-template-columns:1fr}.feedbackSection{padding:55px 5%}}
+
+/* ===== V5 ADMIN ===== */
+.adminSection{padding:75px 6%;background:#f5f8f6}.adminLogin{display:flex;justify-content:center}.adminLoginCard{width:min(430px,100%);background:#fff;border:1px solid #dfe9e4;border-radius:20px;padding:32px;text-align:center;box-shadow:0 18px 45px #17382b12}.adminBigIcon{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;background:#e6f5ee;color:#087552;margin:0 auto 14px}.adminBigIcon svg{width:28px}.adminLoginCard h3{margin:5px 0;font-size:20px}.adminLoginCard p{color:#687a72;font-size:11px;line-height:1.6}.adminLoginCard input{width:100%;padding:12px;border:1px solid #dce7e1;border-radius:10px;margin:10px 0;font-size:12px}.adminLoginCard .primaryBtn{width:100%;display:flex;justify-content:center;gap:7px}.adminHint{display:block;margin-top:10px;color:#899890;font-size:9px}.adminPanel{background:#fff;border:1px solid #dfe9e4;border-radius:18px;padding:18px}.adminToolbar{display:flex;justify-content:space-between;gap:15px;align-items:center;padding-bottom:15px;border-bottom:1px solid #e2ebe6}.adminToolbar>div:first-child strong{display:block;font-size:16px}.adminToolbar small{color:#788980;font-size:9px}.adminTools{display:flex;gap:7px;flex-wrap:wrap}.adminTools .secondaryBtn{display:flex;align-items:center;gap:5px}.fileBtn{cursor:pointer}.adminGrid{display:grid;grid-template-columns:.75fr 1.25fr;gap:18px;margin-top:18px}.adminList{border:1px solid #e2ebe6;border-radius:14px;padding:8px;max-height:650px;overflow:auto}.adminItem{display:flex;gap:9px;align-items:center;padding:9px;border-bottom:1px solid #edf2ef;border-radius:10px;cursor:pointer}.adminItem:hover,.adminItem.active{background:#edf7f2}.adminItem img{width:48px;height:42px;object-fit:cover;border-radius:8px}.adminItem b{font-size:10px;display:block}.adminItem small{font-size:8px;color:#7b8b84}.adminItemActions{margin-left:auto;display:flex;gap:3px}.adminItemActions button{border:0;background:transparent;cursor:pointer;padding:4px}.adminItemActions button.delete{color:#d32f45}.adminForm{border:1px solid #e2ebe6;border-radius:14px;padding:18px}.adminForm h3{margin:0 0 15px}.adminForm label{display:block;font-size:10px;font-weight:800;margin-bottom:10px}.adminForm input,.adminForm textarea,.adminForm select{width:100%;padding:10px;border:1px solid #dce7e1;border-radius:9px;background:#fff;color:#17352a;font-size:11px;margin-top:5px;outline:none}.adminForm textarea{min-height:75px;resize:vertical}.langForm{border:1px solid #e5ece8;border-radius:11px;padding:11px;margin:12px 0}.langForm>b{font-size:11px}.adminWarning{display:block;margin-top:10px;color:#8b6c31;font-size:9px;line-height:1.5;background:#fff8e7;padding:9px;border-radius:8px}.adminForm .primaryBtn,.adminForm .secondaryBtn{display:flex;justify-content:center;align-items:center;gap:5px}.adminPanel[hidden],.adminLogin[hidden]{display:none!important}
+body.dark .adminSection{background:#0c1b16!important}.dark .adminLoginCard,.dark .adminPanel,.dark .adminForm,.dark .adminList,.dark .adminLoginCard input,.dark .adminForm input,.dark .adminForm textarea,.dark .adminForm select{background:#12251f!important;color:#eff8f3!important;border-color:#30483e!important}.dark .adminLoginCard p,.dark .adminHint{color:#a9bdb4!important}.dark .adminToolbar,.dark .adminItem,.dark .langForm{border-color:#30483e!important}.dark .adminItem:hover,.dark .adminItem.active{background:#17372c}.dark .adminForm input::placeholder,.dark .adminForm textarea::placeholder{color:#82968c}.dark .adminWarning{background:#3b321c;color:#e8d18b}
+@media(max-width:900px){.adminGrid{grid-template-columns:1fr}.adminToolbar{align-items:flex-start;flex-direction:column}}
+@media(max-width:520px){.adminTools{width:100%}.adminTools>*{flex:1}.adminPanel{padding:10px}}

@@ -22,6 +22,8 @@
     <a href="#tour" class="active" data-i="tour">360° Tur</a>
     <a href="#about" data-i="about">Loyiha haqida</a>
     <a href="#news" data-i="news">Yangiliklar</a>
+    <a href="#services" data-i="services">Xizmatlar</a>
+    <a href="#admin" data-i="admin">Admin</a>
     <a href="#contact" data-i="contact">Aloqa</a>
   </nav>
   <div class="topTools">
@@ -116,12 +118,101 @@
   </div>
 </section>
 
-<section id="contact" class="contactSection">
+
+<section id="services" class="servicesSection">
+  <div class="sectionHead">
+    <div><span class="eyebrow" data-i="servicesEy">TURIST UCHUN QULAYLIK</span><h2 data-i="servicesTitle">Sayohatingizni osonlashtiring</h2></div>
+  </div>
+  <div class="serviceGrid">
+    <article><span class="serviceIcon"><i data-lucide="hotel"></i></span><h3 data-i="svc1t">Mehmonxonalar</h3><p data-i="svc1p">Gulistonda tunash uchun joylarni topish va xaritada ko‘rish bo‘limi.</p></article>
+    <article><span class="serviceIcon"><i data-lucide="utensils"></i></span><h3 data-i="svc2t">Ovqatlanish</h3><p data-i="svc2p">Restoran, kafe va milliy taomlar bo‘yicha foydali ma’lumotlar.</p></article>
+    <article><span class="serviceIcon"><i data-lucide="calendar-days"></i></span><h3 data-i="svc3t">Tadbirlar</h3><p data-i="svc3p">Shahar tadbirlari, bayramlar va sayyohlar uchun qiziqarli uchrashuvlar.</p></article>
+    <article><span class="serviceIcon"><i data-lucide="navigation"></i></span><h3 data-i="svc4t">Yo‘nalishlar</h3><p data-i="svc4p">Bir kunlik va ko‘p kunlik sayohat yo‘nalishlarini rejalashtirish.</p></article>
+    <article><span class="serviceIcon"><i data-lucide="camera"></i></span><h3 data-i="svc5t">360° fotolar</h3><p data-i="svc5p">Joylarni borishdan oldin virtual ko‘rib chiqish va panorama bilan tanishish.</p></article>
+    <article><span class="serviceIcon"><i data-lucide="languages"></i></span><h3 data-i="svc6t">3 til</h3><p data-i="svc6p">Platformadan o‘zbek, rus va ingliz tillarida foydalanish.</p></article>
+  </div>
+</section>
+
+
+<section id="admin" class="adminSection">
+  <div class="sectionHead">
+    <div><span class="eyebrow" data-i="adminEy">BOSHQARUV</span><h2 data-i="adminTitle">Admin panel</h2></div>
+  </div>
+
+  <div id="adminLogin" class="adminLogin">
+    <div class="adminLoginCard">
+      <span class="adminBigIcon"><i data-lucide="shield-check"></i></span>
+      <h3 data-i="adminLoginTitle">Admin panelga kirish</h3>
+      <p data-i="adminLoginText">Obyektlar, panoramalar va ma’lumotlarni boshqarish.</p>
+      <input id="adminPassword" type="password" data-ph="adminPasswordPh" placeholder="Parol">
+      <button class="primaryBtn" onclick="adminLogin()"><i data-lucide="log-in"></i><span data-i="login">Kirish</span></button>
+      <small class="adminHint" data-i="adminDemoHint">Standart demo parol: 360admin</small>
+    </div>
+  </div>
+
+  <div id="adminPanel" class="adminPanel" hidden>
+    <div class="adminToolbar">
+      <div>
+        <strong data-i="adminObjects">Obyektlar boshqaruvi</strong>
+        <small id="adminCount"></small>
+      </div>
+      <div class="adminTools">
+        <button class="secondaryBtn" onclick="newPlace()"><i data-lucide="plus"></i><span data-i="newObject">Yangi obyekt</span></button>
+        <button class="secondaryBtn" onclick="exportPlaces()"><i data-lucide="download"></i><span data-i="export">Eksport</span></button>
+        <label class="secondaryBtn fileBtn"><i data-lucide="upload"></i><span data-i="import">Import</span><input type="file" id="importFile" accept=".json" hidden></label>
+        <button class="secondaryBtn" onclick="adminLogout()"><i data-lucide="log-out"></i><span data-i="logout">Chiqish</span></button>
+      </div>
+    </div>
+
+    <div class="adminGrid">
+      <div class="adminList" id="adminList"></div>
+      <form id="placeForm" class="adminForm" onsubmit="savePlace(event)">
+        <input type="hidden" id="editId">
+        <h3 id="formTitle">Yangi obyekt</h3>
+        <div class="formRow">
+          <label>ID<input id="fId" required pattern="[a-z0-9-]+" placeholder="masalan: guliston-square"></label>
+          <label>Kategoriya<select id="fCat"><option value="history">Tarixiy</option><option value="culture">Madaniy</option><option value="nature">Tabiiy</option><option value="education">Ta’lim</option></select></label>
+        </div>
+        <label>Rasm URL<input id="fImg" required placeholder="https://.../image.jpg"></label>
+        <label>360° panorama URL<input id="fPano" required placeholder="https://.../panorama.jpg"></label>
+        <div class="formRow">
+          <label>Latitude<input id="fLat" required type="number" step="any"></label>
+          <label>Longitude<input id="fLng" required type="number" step="any"></label>
+        </div>
+        <div class="langForm">
+          <b>🇺🇿 O‘zbekcha</b>
+          <input id="fUzTitle" required placeholder="Obyekt nomi">
+          <textarea id="fUzDesc" required placeholder="Qisqa ma’lumot"></textarea>
+          <textarea id="fUzFull" required placeholder="To‘liq ma’lumot"></textarea>
+        </div>
+        <div class="langForm">
+          <b>🇷🇺 Русский</b>
+          <input id="fRuTitle" required placeholder="Название объекта">
+          <textarea id="fRuDesc" required placeholder="Краткое описание"></textarea>
+          <textarea id="fRuFull" required placeholder="Полное описание"></textarea>
+        </div>
+        <div class="langForm">
+          <b>🇬🇧 English</b>
+          <input id="fEnTitle" required placeholder="Object title">
+          <textarea id="fEnDesc" required placeholder="Short description"></textarea>
+          <textarea id="fEnFull" required placeholder="Full description"></textarea>
+        </div>
+        <div class="formRow">
+          <button type="submit" class="primaryBtn"><i data-lucide="save"></i><span data-i="saveObject">Saqlash</span></button>
+          <button type="button" class="secondaryBtn" onclick="clearPlaceForm()"><span data-i="clear">Tozalash</span></button>
+        </div>
+        <small class="adminWarning" data-i="adminLocalWarning">Bu GitHub Pages versiyasida ma’lumotlar brauzer LocalStorage’ida saqlanadi. Umumiy onlayn admin uchun keyin Supabase/Firebase ulash mumkin.</small>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="feedback" class="feedbackSection">
   <div class="contactIntro"><span class="eyebrow" data-i="contactEy">ALOQA</span><h2 data-i="contactTitle">Biz bilan bog‘laning</h2><p data-i="contactText">Guliston 360° loyihasi bo‘yicha takliflar, 360° panoramalar yoki hamkorlik masalalarida murojaat qilishingiz mumkin.</p></div>
   <div class="contactGrid">
     <a href="tel:+998996676223"><i data-lucide="phone"></i><div><small data-i="phone">Telefon</small><b>+998 99 667 62 23</b></div></a>
     <a href="https://t.me/Husenov_Jahongir" target="_blank"><i data-lucide="send"></i><div><small>Telegram</small><b>Husenov_Jahongir</b></div></a>
-    <a href="https://instagram.com/Husenov_Jahongir" target="_blank"><i data-lucide="instagram"></i><div><small>Instagram</small><b>Husenov_Jahongir</b></div></a>
+    <a href="https://instagram.com/Husenov_Jahongir" target="_blank" rel="noopener"><span class="socialIcon instagramIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span><div><small>Instagram</small><b>Husenov_Jahongir</b></div></a>
     <a href="mailto:husenovjahongir27@gmail.com"><i data-lucide="mail"></i><div><small>Email</small><b>husenovjahongir27@gmail.com</b></div></a>
   </div>
 </section>
@@ -129,7 +220,7 @@
 
 <footer>
   <div><strong>GULISTON <b>360°</b></strong><span data-i="footer">© 2026 Guliston 360° — Virtual sayohat platformasi</span></div>
-  <div class="footerLinks"><a href="#places" data-i="places">Joylar</a><a href="#map" data-i="map">Xarita</a><a href="#contact" data-i="contact">Aloqa</a></div>
+  <div class="footerLinks"><a href="#places" data-i="places">Joylar</a><a href="#map" data-i="map">Xarita</a><a href="#feedback" data-i="feedback">Taklif va shikoyatlar</a><a href="#contact" data-i="contact">Aloqa</a></div>
 </footer>
 
 <div id="modal" class="modal"><div class="modalBox"><button class="close" onclick="closeModal()">×</button><div id="modalContent"></div><div id="qrBox" class="qrBox" hidden><div id="qrCode"></div><small id="qrText"></small></div></div></div>

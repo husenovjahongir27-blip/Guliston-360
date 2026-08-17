@@ -12,9 +12,21 @@ uz:{subtitle:"Virtual sayohat",home:"Bosh sahifa",places:"Joylar",map:"Xarita",t
 ru:{subtitle:"Виртуальное путешествие",home:"Главная",places:"Места",map:"Карта",tour:"360° Тур",about:"О проекте",news:"Новости",contact:"Контакты",placeList:"Список мест",search:"Поиск...",showMap:"Показать на карте",f360:"360° Панорама",f360s:"Виртуальный тур высокого качества",fmap:"Интерактивная карта",fmaps:"Все места на карте",faudio:"Аудиогид",faudios:"Интересные сведения",fmobile:"Мобильная версия",fmobiles:"Для телефона и планшета",ffav:"Избранное",ffavs:"Сохраняйте понравившиеся места",fshare:"Поделиться",fshares:"Поделитесь с друзьями",discover:"ОТКРОЙТЕ ГУЛИСТАН",topPlaces:"Главные достопримечательности",searchPlace:"Поиск места...",allCats:"Все категории",history:"История",culture:"Культура",nature:"Природа",education:"Образование",interactive:"ИНТЕРАКТИВНАЯ КАРТА",gulMap:"Гулистан на карте",mapText:"Найдите основные туристические и культурные места Гулистана на карте.",showAll:"Показать все",aboutEy:"О ГУЛИСТАНЕ",aboutTitle:"«Земля цветов» — административный центр Сырдарьи",aboutText:"Гулистан — административный центр Сырдарьинской области. История города связана с освоением Мирзачуля, ирригацией и развитием железной дороги.",fact1:"городской статус",fact2:"важный период формирования",fact3:"солнечные дни по туристическому источнику",extraEy:"ДОПОЛНИТЕЛЬНО",extraTitle:"Что ещё открыть в Гулистане?",extra1t:"Национальная кухня",extra1p:"В Сырдарьинской области можно попробовать рыбные блюда, плов и другую узбекскую кухню.",extra2t:"Сувениры",extra2p:"На рынках и в сувенирных магазинах можно найти изделия народных ремесел.",extra3t:"Фотозоны",extra3p:"Парки, площади и зелёные зоны подходят для фотографий.",extra4t:"Агротуризм",extra4p:"В регионе есть возможности агротуризма на базе садов, виноградников и полей.",contactEy:"КОНТАКТЫ",contactTitle:"Свяжитесь с нами",contactText:"Пишите по вопросам проекта, 360° панорам и сотрудничества.",phone:"Телефон",footer:"© 2026 Gulistan 360° — Виртуальная туристическая платформа",details:"Подробнее",route:"Маршрут",favorite:"В избранное",remove:"Удалить из избранного",audio:"Аудиогид",share:"Поделиться"},
 en:{subtitle:"Virtual tour",home:"Home",places:"Places",map:"Map",tour:"360° Tour",about:"About project",news:"News",contact:"Contact",placeList:"Places list",search:"Search...",showMap:"View on map",f360:"360° Panorama",f360s:"High-quality virtual tour",fmap:"Interactive map",fmaps:"All places on the map",faudio:"Audio guide",faudios:"Interesting information",fmobile:"Mobile friendly",fmobiles:"For phones and tablets",ffav:"Favorites",ffavs:"Save places you like",fshare:"Share",fshares:"Share with friends",discover:"DISCOVER GULISTAN",topPlaces:"Main attractions",searchPlace:"Search place...",allCats:"All categories",history:"Historic",culture:"Culture",nature:"Nature",education:"Education",interactive:"INTERACTIVE MAP",gulMap:"Gulistan on the map",mapText:"Find Gulistan’s main tourist and cultural places on the map.",showAll:"Show all",aboutEy:"ABOUT GULISTAN",aboutTitle:"“Land of flowers” — administrative center of Syrdarya",aboutText:"Gulistan is the administrative center of Syrdarya region. Its history is closely connected with the development of Mirzacho‘l, irrigation canals and the railway.",fact1:"city status",fact2:"important formation period",fact3:"sunny days noted by tourism source",extraEy:"MORE",extraTitle:"What else can you discover in Gulistan?",extra1t:"National cuisine",extra1p:"Syrdarya offers fish dishes, pilaf and other Uzbek national foods.",extra2t:"Souvenirs",extra2p:"Local markets and souvenir shops offer traditional handicrafts.",extra3t:"Photo zones",extra3p:"City parks, squares and green spaces are good for travel photos.",extra4t:"Agrotourism",extra4p:"The region offers agrotourism opportunities around gardens, vineyards and fields.",contactEy:"CONTACT",contactTitle:"Get in touch",contactText:"Contact us about the project, 360° panoramas or cooperation.",phone:"Phone",footer:"© 2026 Gulistan 360° — Virtual tourism platform",details:"Details",route:"Directions",favorite:"Add to favorites",remove:"Remove from favorites",audio:"Audio guide",share:"Share"}
 };
+
+
+const ADMIN_T={
+uz:{admin:"Admin",adminEy:"BOSHQARUV",adminTitle:"Admin panel",adminLoginTitle:"Admin panelga kirish",adminLoginText:"Obyektlar, panoramalar va ma’lumotlarni boshqarish.",adminPasswordPh:"Parol",login:"Kirish",adminDemoHint:"Standart demo parol: 360admin",adminObjects:"Obyektlar boshqaruvi",newObject:"Yangi obyekt",export:"Eksport",import:"Import",logout:"Chiqish",saveObject:"Saqlash",clear:"Tozalash",adminLocalWarning:"Bu GitHub Pages versiyasida ma’lumotlar brauzer LocalStorage’ida saqlanadi. Umumiy onlayn admin uchun keyin Supabase/Firebase ulash mumkin."},
+ru:{admin:"Админ",adminEy:"УПРАВЛЕНИЕ",adminTitle:"Панель администратора",adminLoginTitle:"Вход в админ-панель",adminLoginText:"Управление объектами, панорамами и информацией.",adminPasswordPh:"Пароль",login:"Войти",adminDemoHint:"Демо-пароль: 360admin",adminObjects:"Управление объектами",newObject:"Новый объект",export:"Экспорт",import:"Импорт",logout:"Выйти",saveObject:"Сохранить",clear:"Очистить",adminLocalWarning:"В версии GitHub Pages данные хранятся в LocalStorage браузера. Для общего онлайн-администрирования позже можно подключить Supabase/Firebase."},
+en:{admin:"Admin",adminEy:"MANAGEMENT",adminTitle:"Admin panel",adminLoginTitle:"Admin panel login",adminLoginText:"Manage places, panoramas and information.",adminPasswordPh:"Password",login:"Log in",adminDemoHint:"Demo password: 360admin",adminObjects:"Place management",newObject:"New place",export:"Export",import:"Import",logout:"Log out",saveObject:"Save",clear:"Clear",adminLocalWarning:"In this GitHub Pages version, data is stored in browser LocalStorage. A shared online admin can later be connected with Supabase/Firebase."}}
+
+const EXTRA_T={
+uz:{services:"Xizmatlar",feedback:"Taklif va shikoyatlar",servicesEy:"TURIST UCHUN QULAYLIK",servicesTitle:"Sayohatingizni osonlashtiring",svc1t:"Mehmonxonalar",svc1p:"Gulistonda tunash uchun joylarni topish va xaritada ko‘rish bo‘limi.",svc2t:"Ovqatlanish",svc2p:"Restoran, kafe va milliy taomlar bo‘yicha foydali ma’lumotlar.",svc3t:"Tadbirlar",svc3p:"Shahar tadbirlari, bayramlar va sayyohlar uchun qiziqarli uchrashuvlar.",svc4t:"Yo‘nalishlar",svc4p:"Bir kunlik va ko‘p kunlik sayohat yo‘nalishlarini rejalashtirish.",svc5t:"360° fotolar",svc5p:"Joylarni borishdan oldin virtual ko‘rib chiqish va panorama bilan tanishish.",svc6t:"3 til",svc6p:"Platformadan o‘zbek, rus va ingliz tillarida foydalanish.",feedbackEy:"TAKLIF VA SHIKOYATLAR",feedbackTitle:"Fikringiz biz uchun muhim",feedbackText:"Saytdagi xatolik, yangi obyekt, 360° panorama yoki boshqa taklifingizni yuboring. Murojaatingiz loyiha elektron pochtasiga yuboriladi.",name:"Ismingiz",email:"Email",type:"Murojaat turi",suggestion:"Taklif",complaint:"Shikoyat",error:"Saytdagi xatolik",other:"Boshqa",message:"Xabar",sendFeedback:"Yuborish",feedbackHint:"Yuborish tugmasi orqali murojaat elektron pochtaga jo‘natiladi. Birinchi foydalanishda FormSubmit xizmatining tasdiqlash xati kelishi mumkin.",namePh:"Ismingizni kiriting",emailPh:"Sizning emailingiz",messagePh:"Taklif yoki shikoyatingizni yozing...",footer:"© 2026 Guliston 360° — Virtual sayohat platformasi"},
+ru:{services:"Сервисы",feedback:"Предложения и жалобы",servicesEy:"УДОБСТВО ДЛЯ ТУРИСТА",servicesTitle:"Сделайте путешествие проще",svc1t:"Отели",svc1p:"Раздел для поиска мест проживания и просмотра их на карте.",svc2t:"Питание",svc2p:"Полезная информация о ресторанах, кафе и национальной кухне.",svc3t:"События",svc3p:"Городские мероприятия, праздники и интересные встречи.",svc4t:"Маршруты",svc4p:"Планирование однодневных и многодневных поездок.",svc5t:"360° фото",svc5p:"Виртуальный просмотр мест до поездки.",svc6t:"3 языка",svc6p:"Платформа доступна на узбекском, русском и английском.",feedbackEy:"ПРЕДЛОЖЕНИЯ И ЖАЛОБЫ",feedbackTitle:"Ваше мнение важно",feedbackText:"Сообщите об ошибке, предложите новый объект или отправьте другую идею. Обращение будет направлено на электронную почту проекта.",name:"Ваше имя",email:"Email",type:"Тип обращения",suggestion:"Предложение",complaint:"Жалоба",error:"Ошибка сайта",other:"Другое",message:"Сообщение",sendFeedback:"Отправить",feedbackHint:"Обращение отправляется на электронную почту. При первом использовании FormSubmit может потребовать подтверждение.",namePh:"Введите имя",emailPh:"Ваш email",messagePh:"Напишите предложение или жалобу...",footer:"© 2026 Gulistan 360° — Виртуальная туристическая платформа"},
+en:{services:"Services",feedback:"Suggestions & complaints",servicesEy:"TOURIST CONVENIENCE",servicesTitle:"Make your trip easier",svc1t:"Hotels",svc1p:"A section for finding accommodation and viewing it on the map.",svc2t:"Food & dining",svc2p:"Useful information about restaurants, cafés and national cuisine.",svc3t:"Events",svc3p:"City events, holidays and interesting activities for visitors.",svc4t:"Routes",svc4p:"Plan one-day and multi-day travel routes.",svc5t:"360° photos",svc5p:"Explore places virtually before visiting.",svc6t:"3 languages",svc6p:"Use the platform in Uzbek, Russian or English.",feedbackEy:"SUGGESTIONS & COMPLAINTS",feedbackTitle:"Your feedback matters",feedbackText:"Report a problem, suggest a new place, request a 360° panorama or send another idea. Your message will be sent to the project email.",name:"Your name",email:"Email",type:"Message type",suggestion:"Suggestion",complaint:"Complaint",error:"Website error",other:"Other",message:"Message",sendFeedback:"Send",feedbackHint:"The message is sent to the project email. On first use, FormSubmit may require an activation confirmation.",namePh:"Enter your name",emailPh:"Your email",messagePh:"Write your suggestion or complaint...",footer:"© 2026 Gulistan 360° — Virtual tourism platform"}};
+
 let lang=localStorage.getItem("g360_lang")||"uz", favorites=JSON.parse(localStorage.getItem("g360_fav")||"[]"), current=0, viewer, auto=true;
 const $=s=>document.querySelector(s);
-function tr(k){return T[lang][k]||T.uz[k]||k}
+function tr(k){return T[lang][k]||EXTRA_T[lang]?.[k]||ADMIN_T[lang]?.[k]||T.uz[k]||EXTRA_T.uz[k]||ADMIN_T.uz[k]||k}
 function applyLang(){
  document.documentElement.lang=lang; document.querySelectorAll("[data-i]").forEach(e=>e.textContent=tr(e.dataset.i));
  document.querySelectorAll("[data-ph]").forEach(e=>e.placeholder=tr(e.dataset.ph));
@@ -25,8 +37,9 @@ function setLang(l){lang=l;localStorage.setItem("g360_lang",l);$(".langWrap").cl
 $("#langBtn").onclick=()=>$(".langWrap").classList.toggle("open");
 document.querySelectorAll("[data-lang]").forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
 function updateThemeIcon(){
- const icon=$("#themeBtn")?.querySelector("svg");
- if(icon) icon.outerHTML=`<i data-lucide="${document.body.classList.contains("dark")?"sun":"moon"}"></i>`;
+ const btn=$("#themeBtn"); if(!btn)return;
+ btn.innerHTML=`<i data-lucide="${document.body.classList.contains("dark")?"sun":"moon"}"></i>`;
+ btn.title=document.body.classList.contains("dark")?"Kunduzgi rejim":"Tungi rejim";
  lucide.createIcons();
 }
 $("#themeBtn").onclick=()=>{
@@ -105,8 +118,92 @@ function initViewer(){
  viewer=pannellum.viewer("panorama",{default:{firstScene:"square",sceneFadeDuration:700,autoRotate:-2,autoLoad:true,showControls:false},scenes:Object.fromEntries(places.map((p)=>[p.id,{type:"equirectangular",panorama:p.pano,autoLoad:true,hotSpots:places.filter(x=>x.id!==p.id).slice(0,3).map((x,j)=>({pitch:[0,7,-6][j],yaw:[0,120,240][j],type:"scene",text:"→ "+x.title.uz,sceneId:x.id}))}]))});
  viewer.on("scenechange",id=>{current=places.findIndex(p=>p.id===id);renderScenes();renderThumbs();renderDetail();lucide.createIcons()});
 }
+
+/* ===== ADMIN PANEL ===== */
+const ADMIN_KEY="g360_admin_places_v5";
+const ADMIN_SESSION="g360_admin_session_v5";
+function getAdminPlaces(){try{const x=JSON.parse(localStorage.getItem(ADMIN_KEY));return Array.isArray(x)&&x.length?x:null}catch(e){return null}}
+function setAdminPlaces(){localStorage.setItem(ADMIN_KEY,JSON.stringify(places))}
+function syncPlaces(){
+  const saved=getAdminPlaces();
+  if(saved){
+    places.splice(0,places.length,...saved);
+  }else{
+    setAdminPlaces();
+  }
+}
+function adminLogin(){
+ const p=$("#adminPassword").value;
+ if(p==="360admin"){
+   sessionStorage.setItem(ADMIN_SESSION,"1");
+   $("#adminLogin").hidden=true;$("#adminPanel").hidden=false;
+   renderAdminList();lucide.createIcons();
+ }else alert(lang==="uz"?"Parol noto‘g‘ri":lang==="ru"?"Неверный пароль":"Wrong password");
+}
+function adminLogout(){sessionStorage.removeItem(ADMIN_SESSION);$("#adminPanel").hidden=true;$("#adminLogin").hidden=false;$("#adminPassword").value=""}
+function renderAdminList(){
+ $("#adminCount").textContent=`${places.length} ${lang==="uz"?"ta obyekt":lang==="ru"?"объектов":"places"}`;
+ $("#adminList").innerHTML=places.map((p,i)=>`<div class="adminItem" onclick="editPlace(${i})"><img src="${p.img}" onerror="this.src='https://placehold.co/96x72?text=360'"><span><b>${p.title[lang]}</b><small>${p.id} · ${catName(p.cat)}</small></span><span class="adminItemActions"><button onclick="event.stopPropagation();editPlace(${i})" title="Edit"><i data-lucide="pencil"></i></button><button class="delete" onclick="event.stopPropagation();deletePlace(${i})" title="Delete"><i data-lucide="trash-2"></i></button></span></div>`).join("");
+ lucide.createIcons();
+}
+function fillPlaceForm(p){
+ $("#editId").value=p.id;$("#fId").value=p.id;$("#fCat").value=p.cat;$("#fImg").value=p.img;$("#fPano").value=p.pano;$("#fLat").value=p.lat;$("#fLng").value=p.lng;
+ $("#fUzTitle").value=p.title.uz;$("#fUzDesc").value=p.desc.uz;$("#fUzFull").value=p.full.uz;
+ $("#fRuTitle").value=p.title.ru;$("#fRuDesc").value=p.desc.ru;$("#fRuFull").value=p.full.ru;
+ $("#fEnTitle").value=p.title.en;$("#fEnDesc").value=p.desc.en;$("#fEnFull").value=p.full.en;
+ $("#formTitle").textContent=lang==="uz"?"Obyektni tahrirlash":lang==="ru"?"Редактирование объекта":"Edit place";
+}
+function editPlace(i){fillPlaceForm(places[i]);$("#placeForm").scrollIntoView({behavior:"smooth",block:"start"})}
+function newPlace(){
+ clearPlaceForm();
+ $("#formTitle").textContent=lang==="uz"?"Yangi obyekt":lang==="ru"?"Новый объект":"New place";
+ $("#placeForm").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function clearPlaceForm(){$("#placeForm").reset();$("#editId").value="";$("#fCat").value="culture";$("#formTitle").textContent=lang==="uz"?"Yangi obyekt":lang==="ru"?"Новый объект":"New place"}
+function savePlace(e){
+ e.preventDefault();
+ const id=$("#fId").value.trim().toLowerCase();
+ const oldId=$("#editId").value;
+ if(oldId && id!==oldId && places.some(p=>p.id===id)){alert("Bu ID mavjud.");return}
+ const obj={id,cat:$("#fCat").value,img:$("#fImg").value.trim(),pano:$("#fPano").value.trim(),lat:Number($("#fLat").value),lng:Number($("#fLng").value),
+ title:{uz:$("#fUzTitle").value,ru:$("#fRuTitle").value,en:$("#fEnTitle").value},
+ desc:{uz:$("#fUzDesc").value,ru:$("#fRuDesc").value,en:$("#fEnDesc").value},
+ full:{uz:$("#fUzFull").value,ru:$("#fRuFull").value,en:$("#fEnFull").value}};
+ const idx=oldId?places.findIndex(p=>p.id===oldId):-1;
+ if(idx>=0)places[idx]=obj;else places.push(obj);
+ setAdminPlaces();current=Math.min(current,places.length-1);renderScenes();renderThumbs();renderCards();renderDetail();renderAdminList();clearPlaceForm();lucide.createIcons();
+ alert(lang==="uz"?"Obyekt saqlandi":lang==="ru"?"Объект сохранён":"Place saved");
+}
+function deletePlace(i){
+ if(places.length<=1){alert("Kamida bitta obyekt qolishi kerak.");return}
+ const ok=confirm(lang==="uz"?"Ushbu obyektni o‘chirasizmi?":lang==="ru"?"Удалить этот объект?":"Delete this place?");
+ if(!ok)return;
+ const id=places[i].id;places.splice(i,1);favorites=favorites.filter(x=>x!==id);localStorage.setItem("g360_fav",JSON.stringify(favorites));setAdminPlaces();
+ current=Math.min(current,places.length-1);renderScenes();renderThumbs();renderCards();renderDetail();renderAdminList();updateFavHeader();lucide.createIcons();
+}
+function exportPlaces(){
+ const blob=new Blob([JSON.stringify(places,null,2)],{type:"application/json"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="guliston360-places.json";a.click();URL.revokeObjectURL(a.href);
+}
+$("#importFile")?.addEventListener("change",async e=>{
+ const f=e.target.files[0];if(!f)return;
+ try{
+  const data=JSON.parse(await f.text());
+  if(!Array.isArray(data)||!data.length)throw new Error("bad");
+  places.splice(0,places.length,...data);setAdminPlaces();renderScenes();renderThumbs();renderCards();renderDetail();renderAdminList();lucide.createIcons();
+  alert(lang==="uz"?"Import muvaffaqiyatli":lang==="ru"?"Импорт выполнен":"Import completed");
+ }catch(err){alert(lang==="uz"?"JSON fayl noto‘g‘ri":lang==="ru"?"Неверный JSON-файл":"Invalid JSON file")}
+ e.target.value="";
+});
+function initAdmin(){
+ syncPlaces();
+ if(sessionStorage.getItem(ADMIN_SESSION)==="1"){$("#adminLogin").hidden=true;$("#adminPanel").hidden=false;renderAdminList()}
+}
+
 function init(){
+ syncPlaces();
  renderScenes();renderThumbs();renderCards();renderDetail();initViewer();fitMap();applyLang();updateFavHeader();updateThemeIcon();lucide.createIcons();
+ initAdmin();
  const hash=location.hash.replace("#","");
  const idx=places.findIndex(p=>p.id===hash);
  if(idx>=0){loadScene(idx)}
