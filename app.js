@@ -24,7 +24,16 @@ function applyLang(){
 function setLang(l){lang=l;localStorage.setItem("g360_lang",l);$(".langWrap").classList.remove("open");applyLang()}
 $("#langBtn").onclick=()=>$(".langWrap").classList.toggle("open");
 document.querySelectorAll("[data-lang]").forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
-$("#themeBtn").onclick=()=>{document.body.classList.toggle("dark");localStorage.setItem("g360_dark",document.body.classList.contains("dark"))};
+function updateThemeIcon(){
+ const icon=$("#themeBtn")?.querySelector("svg");
+ if(icon) icon.outerHTML=`<i data-lucide="${document.body.classList.contains("dark")?"sun":"moon"}"></i>`;
+ lucide.createIcons();
+}
+$("#themeBtn").onclick=()=>{
+ document.body.classList.toggle("dark");
+ localStorage.setItem("g360_dark",document.body.classList.contains("dark"));
+ updateThemeIcon();
+};
 if(localStorage.getItem("g360_dark")==="true")document.body.classList.add("dark");
 const scenePlaces=places;
 function renderScenes(){
@@ -35,9 +44,10 @@ function renderScenes(){
 function renderThumbs(){$("#thumbs").innerHTML=places.map((p,i)=>`<div class="thumb ${i===current?"active":""}" onclick="loadScene(${i})"><img src="${p.img}"></div>`).join("")}
 function renderDetail(){
  const p=places[current], fav=favorites.includes(p.id);
- $("#detailPanel").innerHTML=`<img class="detailImage" src="${p.img}"><span class="detailTag">${catName(p.cat)}</span><h2 class="detailTitle">${p.title[lang]}</h2><p class="detailText">${p.desc[lang]}</p><div class="detailFacts"><div><i data-lucide="map-pin"></i><span>${lang==="uz"?"Guliston shahri, Sirdaryo viloyati":lang==="ru"?"Город Гулистан, Сырдарьинская область":"Gulistan city, Syrdarya region"}</span></div><div><i data-lucide="navigation"></i><span>${p.lat.toFixed(4)}, ${p.lng.toFixed(4)}</span></div><div><i data-lucide="info"></i><span>360° virtual panorama</span></div></div><div class="detailBtns"><button class="primaryBtn" onclick="showDetails('${p.id}')"><i data-lucide="info"></i> ${tr("details")}</button><button class="secondaryBtn" onclick="toggleFav('${p.id}')"><i data-lucide="heart"></i> ${fav?tr("remove"):tr("favorite")}</button></div>`;
+ $("#detailPanel").innerHTML=`<img class="detailImage" src="${p.img}" alt="${p.title[lang]}"><span class="detailTag">${catName(p.cat)}</span><h2 class="detailTitle">${p.title[lang]}</h2><p class="detailText">${p.desc[lang]}</p><div class="detailFacts"><div><i data-lucide="map-pin"></i><span>${lang==="uz"?"Guliston shahri, Sirdaryo viloyati":lang==="ru"?"Город Гулистан, Сырдарьинская область":"Gulistan city, Syrdarya region"}</span></div><div><i data-lucide="navigation"></i><span>${p.lat.toFixed(4)}, ${p.lng.toFixed(4)}</span></div><div><i data-lucide="rotate-3d"></i><span>360° virtual panorama</span></div></div><div class="detailBtns"><button class="primaryBtn" onclick="showDetails('${p.id}')"><i data-lucide="info"></i> ${tr("details")}</button><button class="secondaryBtn favoriteHeart ${fav?"isFav":""}" onclick="toggleFav('${p.id}')" aria-label="${fav?tr("remove"):tr("favorite")}"><i data-lucide="heart"></i> ${fav?tr("remove"):tr("favorite")}</button></div>`;
+ $("#favCount").textContent=favorites.length;
+ lucide.createIcons();
 }
-function catName(c){return T[lang][c==="history"?"history":c==="culture"?"culture":c==="nature"?"nature":"education"]}
 function renderCards(){
  const q=($("#placeSearch")?.value||"").toLowerCase(), c=$("#catFilter")?.value||"all";
  const list=places.filter(p=>(p.title[lang]+" "+p.desc[lang]).toLowerCase().includes(q)&&(c==="all"||p.cat===c));
@@ -49,14 +59,40 @@ function prevScene(){loadScene(current-1)}function nextScene(){loadScene(current
 function zoomIn(){viewer?.setHfov(Math.max(40,viewer.getHfov()-10))}function zoomOut(){viewer?.setHfov(Math.min(120,viewer.getHfov()+10))}
 function toggleFullscreen(){viewer?.toggleFullscreen?.()}
 function toggleAuto(){if(!viewer)return;if(auto){viewer.stopAutoRotate();auto=false;$("#autoIcon").setAttribute("data-lucide","play")}else{viewer.startAutoRotate(-2);auto=true;$("#autoIcon").setAttribute("data-lucide","pause")}lucide.createIcons()}
-function toggleFav(id){favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];localStorage.setItem("g360_fav",JSON.stringify(favorites));$("#favCount").textContent=favorites.length;renderDetail();renderCards();lucide.createIcons()}
-$("#favBtn").onclick=()=>{if(!favorites.length)return alert(tr("ffavs"));const p=places.find(x=>favorites.includes(x.id));loadScene(places.indexOf(p));scrollToId("home")};
+function updateFavHeader(){
+ const b=$("#favBtn");
+ if(!b)return;
+ const active=favorites.length>0;
+ b.classList.toggle("favActive",active);
+}
+function toggleFav(id){
+ favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];
+ localStorage.setItem("g360_fav",JSON.stringify(favorites));
+ updateFavHeader();
+ renderDetail();renderCards();lucide.createIcons();
+}
+$("#favBtn").onclick=()=>{
+ if(!favorites.length){alert(tr("ffavs"));return;}
+ const items=favorites.map(id=>places.find(p=>p.id===id)).filter(Boolean);
+ $("#modalContent").innerHTML=`<h2>${tr("ffav")}</h2><div class="sceneList">${items.map(p=>`<div class="sceneItem" onclick="loadScene(${places.indexOf(p)});closeModal();scrollToId('home')"><img class="sceneThumb" src="${p.img}"><span><b>${p.title[lang]}</b><small>${catName(p.cat)}</small></span></div>`).join("")}</div>`;
+ $("#qrBox").hidden=true;$("#modal").classList.add("show");
+};
 function showDetails(id){
  const p=places.find(x=>x.id===id);
- $("#modalContent").innerHTML=`<img class="detailImage" src="${p.img}"><span class="tag">${catName(p.cat)}</span><h2>${p.title[lang]}</h2><p style="line-height:1.8;color:#61746b">${p.full[lang]}</p><p style="line-height:1.8;color:#61746b"><b>${lang==="uz"?"Manzil":"Location"}:</b> ${p.lat.toFixed(5)}, ${p.lng.toFixed(5)}</p><div class="detailBtns"><button class="primaryBtn" onclick="route('${p.id}')">${tr("route")}</button><button class="secondaryBtn" onclick="speak('${p.id}')">${tr("audio")}</button><button class="secondaryBtn" onclick="share('${p.id}')">${tr("share")}</button></div>`;
- $("#modal").classList.add("show");
+ $("#modalContent").innerHTML=`<img class="detailImage" src="${p.img}" alt="${p.title[lang]}"><span class="tag">${catName(p.cat)}</span><h2>${p.title[lang]}</h2><p style="line-height:1.8;color:#61746b">${p.full[lang]}</p><p style="line-height:1.8;color:#61746b"><b>${lang==="uz"?"Manzil":lang==="ru"?"Адрес":"Location"}:</b> ${p.lat.toFixed(5)}, ${p.lng.toFixed(5)}</p><div class="detailBtns"><button class="primaryBtn" onclick="route('${p.id}')">${tr("route")}</button><button class="secondaryBtn" onclick="speak('${p.id}')">${tr("audio")}</button><button class="secondaryBtn" onclick="share('${p.id}')">${tr("share")}</button><button class="secondaryBtn" onclick="makeQR('${p.id}')"><i data-lucide="qr-code"></i> QR</button></div>`;
+ $("#qrBox").hidden=true;$("#qrCode").innerHTML="";$("#qrText").textContent="";
+ $("#modal").classList.add("show");lucide.createIcons();
 }
-function closeModal(){$("#modal").classList.remove("show")}
+function makeQR(id){
+ const p=places.find(x=>x.id===id), url=location.href.split("#")[0]+"#"+p.id;
+ $("#qrBox").hidden=false;$("#qrCode").innerHTML="";$("#qrText").textContent=url;
+ if(window.QRCode){
+   new QRCode($("#qrCode"),{text:url,width:150,height:150,colorDark:"#10241d",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M});
+ }else{
+   $("#qrCode").textContent="QR kutubxonasi yuklanmadi";
+ }
+} 
+function closeModal(){$("#modal").classList.remove("show");$("#qrBox").hidden=true}
 function route(id){const p=places.find(x=>x.id===id);window.open(`https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}`,"_blank")}
 function speak(id){const p=places.find(x=>x.id===id);if(!speechSynthesis)return;const u=new SpeechSynthesisUtterance(p.full[lang]);u.lang={uz:"uz-UZ",ru:"ru-RU",en:"en-US"}[lang];speechSynthesis.cancel();speechSynthesis.speak(u)}
 function share(id){const p=places.find(x=>x.id===id),url=location.href.split("#")[0]+"#"+id;if(navigator.share)navigator.share({title:p.title[lang],text:p.desc[lang],url});else navigator.clipboard?.writeText(url).then(()=>alert("Link copied"))}
@@ -69,5 +105,10 @@ function initViewer(){
  viewer=pannellum.viewer("panorama",{default:{firstScene:"square",sceneFadeDuration:700,autoRotate:-2,autoLoad:true,showControls:false},scenes:Object.fromEntries(places.map((p)=>[p.id,{type:"equirectangular",panorama:p.pano,autoLoad:true,hotSpots:places.filter(x=>x.id!==p.id).slice(0,3).map((x,j)=>({pitch:[0,7,-6][j],yaw:[0,120,240][j],type:"scene",text:"→ "+x.title.uz,sceneId:x.id}))}]))});
  viewer.on("scenechange",id=>{current=places.findIndex(p=>p.id===id);renderScenes();renderThumbs();renderDetail();lucide.createIcons()});
 }
-function init(){renderScenes();renderThumbs();renderCards();renderDetail();initViewer();fitMap();applyLang();lucide.createIcons()}
+function init(){
+ renderScenes();renderThumbs();renderCards();renderDetail();initViewer();fitMap();applyLang();updateFavHeader();updateThemeIcon();lucide.createIcons();
+ const hash=location.hash.replace("#","");
+ const idx=places.findIndex(p=>p.id===hash);
+ if(idx>=0){loadScene(idx)}
+}
 init();

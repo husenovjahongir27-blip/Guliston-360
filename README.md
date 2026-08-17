@@ -32,3 +32,16 @@ Hozirgi repository'dagi `index.html`, `style.css`, `app.js` fayllarini almashtir
 
 ## 360° suratlar
 `app.js` ichidagi `places` massivida har bir obyekt uchun `pano` URL mavjud. Haqiqiy Guliston 360° equirectangular rasmlari tayyor bo‘lgach, shu URL'lar almashtiriladi.
+
+
+## V3 tuzatishlari
+- Tungi rejim to‘liq ishlaydigan dark theme bilan yangilandi.
+- Sevimli obyekt tanlanganda yurak qizil bo‘ladi.
+- Panorama balandligi kamaytirildi; sahifaning qolgan bo‘limlariga scroll qilish qulay.
+- “Keyingi bo‘lim” tugmasi qo‘shildi.
+- QR-kod qayta qo‘shildi.
+- QR kod obyektning batafsil oynasidan yaratiladi.
+- 360°, xarita, obyektlar, aloqa va qo‘shimcha bo‘limlar saqlab qolindi.
+- Mahalliy CSS/JS fayllarga cache-busting (`?v=3`) qo‘shildi.
+- Mobil va kompyuter uchun alohida o‘lchamlar yaxshilandi.
+- Favoritlar ro‘yxati alohida oynada ko‘rsatiladi.

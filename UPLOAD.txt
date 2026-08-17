@@ -1,0 +1,8 @@
+GITHUB YANGILASH:
+1) ZIP ni Extract All qiling.
+2) GitHub repository -> Add file -> Upload files.
+3) Shu papkadagi index.html, style.css, app.js, README.md, .nojekyll va UPLOAD.txt ni ROOT ga yuklang.
+4) index.html bilan style.css va app.js BIR XIL ROOT PAPKADA bo‘lishi shart.
+5) Commit changes.
+6) Saytni Ctrl+F5 bilan yangilang.
+7) Agar eski CSS ko‘rinsa: Ctrl+Shift+R yoki brauzer cache-ni tozalang.

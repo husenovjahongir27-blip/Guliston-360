@@ -7,8 +7,7 @@
 <meta name="description" content="Guliston shahri bo‘ylab 360° virtual sayohat va interaktiv turizm platformasi.">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.css">
-<link rel="stylesheet" href="https://unpkg.com/lucide@latest/dist/umd/lucide.js">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 <header class="topbar">
@@ -54,6 +53,7 @@
     <div id="panorama"></div>
     <button class="panoArrow left" onclick="prevScene()"><i data-lucide="chevron-left"></i></button>
     <button class="panoArrow right" onclick="nextScene()"><i data-lucide="chevron-right"></i></button>
+    <button class="scrollNext" onclick="scrollToId('places')" title="Keyingi bo‘lim"><i data-lucide="chevron-down"></i></button>
     <div class="panoControls">
       <button onclick="zoomIn()"><i data-lucide="plus"></i></button>
       <button onclick="zoomOut()"><i data-lucide="minus"></i></button>
@@ -132,11 +132,12 @@
   <div class="footerLinks"><a href="#places" data-i="places">Joylar</a><a href="#map" data-i="map">Xarita</a><a href="#contact" data-i="contact">Aloqa</a></div>
 </footer>
 
-<div id="modal" class="modal"><div class="modalBox"><button class="close" onclick="closeModal()">×</button><div id="modalContent"></div></div></div>
+<div id="modal" class="modal"><div class="modalBox"><button class="close" onclick="closeModal()">×</button><div id="modalContent"></div><div id="qrBox" class="qrBox" hidden><div id="qrCode"></div><small id="qrText"></small></div></div></div>
 
 <script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.js"></script>
-<script src="app.js"></script>
+<script src="app.js?v=3"></script>
 </body>
 </html>
