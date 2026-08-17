@@ -40,12 +40,28 @@ function sharePlace(id){const p=places.find(x=>x.id===id);shareUrl(location.href
 function shareTour(){shareUrl(location.href.split("#")[0]+"#tour","Guliston 360° virtual tur")}
 function qr(id){const p=places.find(x=>x.id===id);const u=encodeURIComponent(location.href.split("#")[0]+"#place-"+id);$("#modalContent").innerHTML=`<div class="detail"><span class="eyebrow">QR-KOD</span><h2>${p.name}</h2><p>Telefon kamerasi bilan skanerlang.</p><img alt="QR" style="width:240px;display:block;margin:15px auto" src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${u}"><div class="detailBtns"><button class="btn primary small" onclick="closeModal()">Yopish</button></div></div>`}
 function speak(id){const p=places.find(x=>x.id===id);if(!("speechSynthesis" in window))return toast("Audio funksiyasi brauzerda mavjud emas");speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(`${p.name}. ${p.info}`);u.lang=currentLang==="RU"?"ru-RU":currentLang==="EN"?"en-US":"uz-UZ";speechSynthesis.speak(u);toast("Audio gid ishga tushdi")}
-function initViewer(){viewer=pannellum.viewer("panorama",{type:"equirectangular",panorama:demoPano,autoLoad:true,autoRotate:-2,showControls:true,compass:true,title:"Guliston 360° — Demo",author:"Guliston 360"});viewer.on("load",()=>{auto=true});}
+const scenes={
+square:{title:"Guliston markaziy maydoni",pano:"https://pannellum.org/images/alma.jpg",pitch:0,yaw:0},
+park:{title:"Madaniyat va istirohat bog‘i",pano:"https://pannellum.org/images/bma-0.jpg",pitch:0,yaw:0},
+museum:{title:"O‘lkashunoslik muzeyi",pano:"https://pannellum.org/images/cerro-toco-0.jpg",pitch:0,yaw:0},
+theatre:{title:"Drama teatri",pano:"https://pannellum.org/images/alma.jpg",pitch:0,yaw:90},
+sport:{title:"Alpomish sport majmuasi",pano:"https://pannellum.org/images/bma-0.jpg",pitch:0,yaw:120},
+library:{title:"Bilimdonlar maskani",pano:"https://pannellum.org/images/cerro-toco-0.jpg",pitch:0,yaw:180}
+};
+function sceneConfig(id){
+ const s=scenes[id], links=Object.keys(scenes).filter(x=>x!==id).slice(0,3);
+ return {type:"equirectangular",panorama:s.pano,autoLoad:true,pitch:s.pitch,yaw:s.yaw,hfov:100,
+  hotSpots:[...links.map((to,i)=>({id:"to-"+to,pitch:[0,8,-7][i],yaw:[0,120,240][i],type:"scene",text:"➡ "+scenes[to].title,sceneId:to})),{id:"info-"+id,pitch:18,yaw:0,type:"info",text:"ℹ "+s.title}]};
+}
+function initViewer(){
+ viewer=pannellum.viewer("panorama",{default:{firstScene:"square",sceneFadeDuration:800,autoRotate:-2,autoLoad:true,showControls:true,compass:true},scenes:{square:sceneConfig("square"),park:sceneConfig("park"),museum:sceneConfig("museum"),theatre:sceneConfig("theatre"),sport:sceneConfig("sport"),library:sceneConfig("library")}});
+ viewer.on("scenechange",id=>{$("#panoTitle").textContent=scenes[id].title+" — 360°";document.querySelectorAll(".scene").forEach(x=>x.classList.remove("active"));document.querySelector(`.scene[data-scene="${id}"]`)?.classList.add("active")});
+}
 function toggleAuto(){if(!viewer)return;if(auto){viewer.stopAutoRotate();auto=false;toast("Avtomatik aylanish o‘chirildi")}else{viewer.startAutoRotate(-2);auto=true;toast("Avtomatik aylanish yoqildi")}}
-function fullscreenPano(){document.querySelector(".viewer")?.requestFullscreen?.()}
-function toggleGyro(){toast("Telefoningizda panoramani sensor bilan boshqarish brauzer ruxsatiga bog‘liq.")}
-function openScene(id){scrollToId("tour");setTimeout(()=>{const p=places.find(x=>x.id===id);$("#panoTitle").textContent=p.name+" — 360° demo";viewer?.loadScene?.("default")||viewer?.load?.();toast("Virtual tur: "+p.name)},500)}
-function renderScenes(){$("#sceneList").innerHTML=places.map(p=>`<div class="scene" onclick="openScene('${p.id}')"><span class="sceneIcon">${p.icon}</span><span><b>${p.name}</b><small>${p.cat}</small></span></div>`).join("")}
+function fullscreenPano(){viewer?.toggleFullscreen?.()}
+function toggleGyro(){if(!viewer)return;if(viewer.isOrientationActive?.()){viewer.stopOrientation();toast("Gyro o‘chirildi")}else if(viewer.isOrientationSupported?.()){viewer.startOrientation();toast("Gyro yoqildi")}else toast("Bu qurilmada gyro qo‘llanmaydi")}
+function openScene(id){scrollToId("tour");setTimeout(()=>{if(viewer&&scenes[id]){viewer.loadScene(id,scenes[id].pitch,scenes[id].yaw,100);$("#panoTitle").textContent=scenes[id].title+" — 360°";toast("Virtual tur: "+scenes[id].title)}},350)}
+function renderScenes(){$("#sceneList").innerHTML=Object.keys(scenes).map(id=>{const p=places.find(x=>x.id===id);return `<div class="scene" data-scene="${id}" onclick="openScene('${id}')"><span class="sceneIcon">${p?.icon||"📍"}</span><span><b>${scenes[id].title}</b><small>${p?.cat||"Virtual nuqta"}</small></span></div>`}).join("")}
 function toggleTheme(){document.body.classList.toggle("dark");localStorage.setItem("gul360_theme",document.body.classList.contains("dark")?"dark":"light");$("#themeBtn").textContent=document.body.classList.contains("dark")?"☀":"☾"}
 function toggleLang(){const arr=["UZ","RU","EN"];currentLang=arr[(arr.indexOf(currentLang)+1)%3];localStorage.setItem("gul360_lang",currentLang);$("#langBtn").textContent=currentLang;toast("Til: "+currentLang)}
 $("#themeBtn").onclick=toggleTheme;$("#langBtn").onclick=toggleLang;$("#favNav").onclick=()=>{if(!favorites.length)return toast("Sevimlilar hozircha bo‘sh");$("#search").value="";$("#cat").value="all";$("#placeGrid").innerHTML=places.filter(p=>favorites.includes(p.id)).map(p=>`<article class="card"><div class="cover">${p.icon}</div><div class="body"><span class="tag">SEVIMLI</span><h3>${p.name}</h3><p>${p.desc}</p><button class="mini dark" onclick="detail('${p.id}')">Batafsil</button></div></article>`).join("");scrollToId("places")};

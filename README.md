@@ -1,39 +1,22 @@
-# GULISTON 360 — GitHub Pages PRO
+# GULISTON 360 — Real Virtual Tour PRO
 
-Bu versiya statik GitHub Pages uchun tayyorlangan.
+Ko‘p nuqtali 360° virtual tur demo.
 
-## Kiritilgan funksiyalar
-- Responsive desktop/mobile dizayn
-- Interaktiv OpenStreetMap xaritasi
-- 6 ta demo obyekt
-- Qidiruv va kategoriya filtri
-- Obyekt detail oynasi
-- 360° Pannellum viewer
-- Virtual tur nuqtalari ro‘yxati
-- Auto-rotate
+- 6 ta panorama scene
+- Hotspot orqali scene → scene o‘tish
+- Scene list
+- Scene fade
+- Auto rotate
 - Fullscreen
-- Mobil gyro uchun UI
-- Sevimlilar (localStorage)
-- UZ/RU/EN til almashtirgich UI
-- Dark mode
-- Geolocation
-- Google Maps yo‘nalish tugmasi
-- Web Share / clipboard
+- Telefon gyro/orientation
+- Interaktiv xarita
+- Qidiruv va filtr
+- Sevimlilar
+- Audio gid
 - QR-kod
-- Audio gid (Speech Synthesis)
-- GitHub Pages Actions deploy
-- `.nojekyll`
+- Google Maps yo‘nalishi
+- Dark mode
+- UZ/RU/EN UI
+- Responsive mobil dizayn
 
-## Haqiqiy 360° panoramalar
-`app.js` ichidagi `demoPano` qiymatini haqiqiy equirectangular 360° rasm URL manziliga almashtiring.
-Professional ko‘p nuqtali tur uchun keyingi bosqichda Marzipano scene/hotspot tizimini ulash mumkin.
-
-## GitHub
-1. GitHub → New repository → masalan `guliston360`
-2. ZIP ichidagi BARCHA fayllarni repository root'iga yuklang.
-3. Settings → Pages → Source: GitHub Actions.
-4. Actions'da `Deploy Guliston 360 to GitHub Pages` ishga tushadi.
-5. Sayt: https://USERNAME.github.io/guliston360/
-
-## Muhim cheklov
-GitHub Pages server-side baza va maxfiy admin loginini o‘zi bajarmaydi. Haqiqiy admin panel, obyekt qo‘shish/o‘chirish, sharhlarni serverda saqlash uchun Supabase/Firebase yoki alohida backend kerak bo‘ladi.
+Demo panoramalar Pannellum ochiq namuna rasmlaridir; ular haqiqiy Guliston fotosuratlari emas. Haqiqiy 360° rasmlarni `app.js` ichidagi `scenes` obyektidagi `pano` URL'lariga almashtirish kerak.
