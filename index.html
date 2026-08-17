@@ -1,67 +1,142 @@
 <!doctype html>
 <html lang="uz">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Guliston 360 — Virtual sayohat</title>
-<meta name="description" content="Guliston shahri bo'ylab 360° virtual sayohat, xarita va turistik obyektlar.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%230d7654%22/><text x=%2250%22 y=%2261%22 text-anchor=%22middle%22 font-size=%2238%22 fill=%22white%22>360</text></svg>">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guliston 360° — Virtual sayohat</title>
+<meta name="description" content="Guliston shahri bo‘ylab 360° virtual sayohat va interaktiv turizm platformasi.">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.css">
+<link rel="stylesheet" href="https://unpkg.com/lucide@latest/dist/umd/lucide.js">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="toast"></div>
-<header class="nav">
-  <a class="brand" href="#home"><span class="brandmark">360°</span><span><b>Guliston</b><small>Virtual sayohat</small></span></a>
-  <nav>
-    <a href="#places" data-i="places">Joylar</a><a href="#mapSection" data-i="map">Xarita</a>
-    <a href="#tour" data-i="tour">360° tur</a><a href="#about" data-i="about">Loyiha</a>
+<header class="topbar">
+  <a class="brand" href="#home">
+    <span class="brandMark">360°</span>
+    <span><strong>GULISTON <b>360°</b></strong><small data-i="subtitle">Virtual sayohat</small></span>
+  </a>
+  <nav class="mainNav">
+    <a href="#home" data-i="home">Bosh sahifa</a>
+    <a href="#places" data-i="places">Joylar</a>
+    <a href="#map" data-i="map">Xarita</a>
+    <a href="#tour" class="active" data-i="tour">360° Tur</a>
+    <a href="#about" data-i="about">Loyiha haqida</a>
+    <a href="#news" data-i="news">Yangiliklar</a>
+    <a href="#contact" data-i="contact">Aloqa</a>
   </nav>
-  <div class="navtools"><button id="favNav" class="iconbtn" title="Sevimlilar">♡ <span id="favCount">0</span></button><button id="langBtn" class="pill">UZ</button><button id="themeBtn" class="iconbtn">☾</button><button id="menuBtn" class="iconbtn mobile">☰</button></div>
+  <div class="topTools">
+    <button class="roundBtn" id="favBtn" title="Sevimlilar"><i data-lucide="heart"></i><span id="favCount">0</span></button>
+    <button class="roundBtn" id="themeBtn" title="Tungi rejim"><i data-lucide="sun"></i></button>
+    <div class="langWrap">
+      <button class="langBtn" id="langBtn"><span id="flag">🇺🇿</span><span id="langName">UZ</span><i data-lucide="chevron-down"></i></button>
+      <div class="langMenu">
+        <button data-lang="uz">🇺🇿 <span>O‘zbekcha</span></button>
+        <button data-lang="ru">🇷🇺 <span>Русский</span></button>
+        <button data-lang="en">🇬🇧 <span>English</span></button>
+      </div>
+    </div>
+  </div>
 </header>
 
 <main id="home">
-<section class="hero">
-  <div class="heroText"><span class="eyebrow">SIRDARYO • GULISTON</span><h1>Gulistonni <em>360°</em> ko‘ring.</h1>
-  <p>Tarixiy, madaniy va sayyohlik maskanlarini xaritada toping, virtual sayohatni boshlang va o‘zingizga yoqqan joylarni saqlang.</p>
-  <div class="actions"><button class="btn primary" onclick="scrollToId('tour')">360° sayohatni boshlash ↗</button><button class="btn ghost" onclick="scrollToId('mapSection')">Xaritani ochish</button></div>
-  <div class="trust"><span>✓ Telefon</span><span>✓ Kompyuter</span><span>✓ 3 tilga tayyor</span></div></div>
-  <div class="heroVisual"><div class="globe"><div class="gline g1"></div><div class="gline g2"></div><div class="gline g3"></div><div class="gtext">GULISTON<br><strong>360°</strong></div></div></div>
+<section class="tourHero">
+  <div class="tourTopLabel"><i data-lucide="map-pin"></i><span id="sceneTitle">Guliston markaziy maydoni</span><small id="sceneCount">1 / 6</small></div>
+
+  <aside class="leftPanel glass">
+    <div class="panelTitle"><i data-lucide="map"></i><strong data-i="placeList">Joylar ro‘yxati</strong></div>
+    <input id="search" class="search" data-ph="search" placeholder="Qidirish...">
+    <div id="sceneList" class="sceneList"></div>
+    <button class="mapButton" onclick="scrollToId('map')"><i data-lucide="map"></i><span data-i="showMap">Xaritada ko‘rish</span></button>
+  </aside>
+
+  <div class="panoramaWrap">
+    <div id="panorama"></div>
+    <button class="panoArrow left" onclick="prevScene()"><i data-lucide="chevron-left"></i></button>
+    <button class="panoArrow right" onclick="nextScene()"><i data-lucide="chevron-right"></i></button>
+    <div class="panoControls">
+      <button onclick="zoomIn()"><i data-lucide="plus"></i></button>
+      <button onclick="zoomOut()"><i data-lucide="minus"></i></button>
+      <button onclick="toggleFullscreen()"><i data-lucide="maximize"></i></button>
+      <button onclick="toggleAuto()"><i data-lucide="play" id="autoIcon"></i></button>
+    </div>
+    <div class="thumbs" id="thumbs"></div>
+  </div>
+
+  <aside class="rightPanel glass" id="detailPanel"></aside>
 </section>
 
-<section class="quick">
-  <div><strong>6+</strong><span>obyekt</span></div><div><strong>360°</strong><span>virtual tur</span></div><div><strong>3</strong><span>til</span></div><div><strong>24/7</strong><span>onlayn kirish</span></div>
+<section class="featureStrip">
+  <div><span class="fIcon green"><i data-lucide="globe-2"></i></span><b data-i="f360">360° Panorama</b><small data-i="f360s">Yuqori sifatli virtual tur</small></div>
+  <div><span class="fIcon blue"><i data-lucide="map"></i></span><b data-i="fmap">Interaktiv xarita</b><small data-i="fmaps">Barcha joylar xaritada</small></div>
+  <div><span class="fIcon violet"><i data-lucide="volume-2"></i></span><b data-i="faudio">Audio gid</b><small data-i="faudios">Qiziqarli ma’lumotlar</small></div>
+  <div><span class="fIcon cyan"><i data-lucide="smartphone"></i></span><b data-i="fmobile">Mobil moslashuv</b><small data-i="fmobiles">Telefon va planshetlar uchun</small></div>
+  <div><span class="fIcon orange"><i data-lucide="heart"></i></span><b data-i="ffav">Sevimlilar</b><small data-i="ffavs">Yoqqan joylaringizni saqlang</small></div>
+  <div><span class="fIcon green"><i data-lucide="share-2"></i></span><b data-i="fshare">Ulashish</b><small data-i="fshares">Do‘stlaringiz bilan ulashing</small></div>
 </section>
 
-<section id="places" class="section">
-  <div class="sectionHead"><div><span class="eyebrow">GULISTONNI KASHF ETING</span><h2>Diqqatga sazovor joylar</h2></div>
-  <div class="filters"><input id="search" placeholder="🔎 Joy qidirish..." oninput="renderPlaces()"><select id="cat" onchange="renderPlaces()"><option value="all">Barcha kategoriyalar</option><option>Madaniyat</option><option>Istirohat</option><option>Muzey</option><option>Sport</option><option>Ta'lim</option></select></div></div>
-  <div id="placeGrid" class="grid"></div>
+<section id="places" class="contentSection">
+  <div class="sectionHead">
+    <div><span class="eyebrow" data-i="discover">GULISTONNI KASHF ETING</span><h2 data-i="topPlaces">Asosiy diqqatga sazovor joylar</h2></div>
+    <div class="filters"><input id="placeSearch" data-ph="searchPlace" placeholder="Joy qidirish..."><select id="catFilter"><option value="all" data-i="allCats">Barcha kategoriyalar</option><option value="history" data-i="history">Tarixiy</option><option value="culture" data-i="culture">Madaniy</option><option value="nature" data-i="nature">Tabiiy</option><option value="education" data-i="education">Ta’lim</option></select></div>
+  </div>
+  <div id="placeCards" class="placeGrid"></div>
 </section>
 
-<section id="mapSection" class="mapSection"><div class="mapInfo"><span class="eyebrow">INTERAKTIV XARITA</span><h2>Guliston xaritada</h2><p>Istalgan markerga bosing. Obyekt haqida ma’lumot, sevimlilarga qo‘shish va virtual turga kirish tugmalari mavjud.</p><div class="mapBtns"><button class="btn primary small" onclick="locateUser()">📍 Mening joylashuvim</button><button class="btn ghost small" onclick="fitAll()">↔ Barchasini ko‘rsatish</button></div></div><div id="map"></div></section>
-
-<section id="tour" class="section tourSection">
- <div class="sectionHead"><div><span class="eyebrow">VIRTUAL SAYOHAT</span><h2>360° panorama</h2></div>
- <div class="tourTools"><button class="tool" onclick="toggleAuto()">↻ Auto</button><button class="tool" onclick="toggleGyro()">📱 Gyro</button><button class="tool" onclick="fullscreenPano()">⛶ Fullscreen</button></div></div>
- <div class="tourLayout"><div class="viewer"><div id="panorama"></div><div class="viewerTop"><span id="panoTitle">Guliston 360° — Demo panorama</span><button onclick="shareTour()">↗ Ulashish</button></div><div class="viewerBottom"><span>Demo panorama. Haqiqiy 360° suratlar keyin shu joyga yuklanadi.</span></div></div>
- <aside class="sceneList"><b>Virtual tur nuqtalari</b><div id="sceneList"></div></aside></div>
+<section id="map" class="mapSection">
+  <div class="mapInfo">
+    <span class="eyebrow" data-i="interactive">INTERAKTIV XARITA</span>
+    <h2 data-i="gulMap">Guliston xaritada</h2>
+    <p data-i="mapText">Gulistonning asosiy turistik va madaniy maskanlarini xaritada toping. Marker orqali obyekt haqida batafsil ma’lumotga o‘ting.</p>
+    <button class="primaryBtn" onclick="fitMap()"><i data-lucide="scan"></i><span data-i="showAll">Barchasini ko‘rsatish</span></button>
+  </div>
+  <div id="leafletMap"></div>
 </section>
 
-<section class="section features"><div class="sectionHead"><div><span class="eyebrow">IMKONIYATLAR</span><h2>Platformadagi funksiyalar</h2></div></div>
-<div class="featureGrid">
-<div>🗺️<b>Interaktiv xarita</b><span>Obyektlarni markerlar orqali topish.</span></div><div>🥽<b>360° virtual tur</b><span>Panoramani aylantirish, zoom va hotspotlar.</span></div><div>❤️<b>Sevimlilar</b><span>Tanlangan joylarni brauzerda saqlash.</span></div><div>🔎<b>Qidiruv va filtr</b><span>Joy nomi va kategoriya bo‘yicha qidirish.</span></div><div>📤<b>Ulashish</b><span>Obyekt yoki tur havolasini yuborish.</span></div><div>🌐<b>Ko‘p tilli</b><span>UZ / RU / EN interfeysga tayyor.</span></div><div>🎧<b>Audio gid</b><span>Obyekt tavsifini audio orqali tinglash.</span></div><div>📱<b>Mobil va gyro</b><span>Telefon ekranida va sensor bilan ishlash.</span></div><div>🧭<b>Yo‘nalish</b><span>Google Maps orqali borish tugmasi.</span></div><div>💬<b>Sharhlar</b><span>Foydalanuvchi fikrlarini qo‘shish.</span></div><div>🔲<b>QR-kod</b><span>Har bir obyekt uchun QR yaratish.</span></div><div>⚙️<b>Admin panelga tayyor</b><span>Keyingi bosqichda obyektlarni boshqarish.</span></div>
-</div></section>
+<section id="about" class="aboutSection">
+  <div class="aboutText">
+    <span class="eyebrow" data-i="aboutEy">GULISTON HAQIDA</span>
+    <h2 data-i="aboutTitle">“Gullar o‘lkasi” — Sirdaryoning ma’muriy markazi</h2>
+    <p data-i="aboutText">Guliston Sirdaryo viloyatining ma’muriy markazi. Shahar Mirzacho‘lni o‘zlashtirish, sug‘orish kanallari va temir yo‘l rivoji bilan chambarchas bog‘liq tarixga ega.</p>
+  </div>
+  <div class="facts">
+    <div><b>1961</b><span data-i="fact1">shahar maqomi berilgan</span></div>
+    <div><b>1895</b><span data-i="fact2">shakllanishining muhim davri</span></div>
+    <div><b>247</b><span data-i="fact3">quyoshli kunlar haqida turizm manbasida qayd etilgan</span></div>
+  </div>
+</section>
 
-<section id="about" class="about"><div><span class="eyebrow">GULISTON 360</span><h2>Shaharni raqamli turizm xaritasiga aylantiramiz.</h2><p>Ushbu loyiha Guliston shahrining turistik, madaniy va tabiiy salohiyatini 360° texnologiya va interaktiv xarita orqali namoyish etish uchun ishlab chiqilgan.</p></div><div class="road"><div><b>01</b>360° suratlarni yig‘ish</div><div><b>02</b>Panorama hotspotlarini yaratish</div><div><b>03</b>Admin + ma’lumotlar bazasi</div><div><b>04</b>Domen va professional hosting</div></div></section>
+<section id="news" class="contentSection">
+  <div class="sectionHead"><div><span class="eyebrow" data-i="extraEy">QO‘SHIMCHA</span><h2 data-i="extraTitle">Gulistonda nimalarni kashf etish mumkin?</h2></div></div>
+  <div class="extraGrid">
+    <article><i data-lucide="fish"></i><h3 data-i="extra1t">Milliy taomlar</h3><p data-i="extra1p">Sirdaryo hududida baliq taomlari, palov va boshqa o‘zbek milliy taomlarini tatib ko‘rish mumkin.</p></article>
+    <article><i data-lucide="shopping-bag"></i><h3 data-i="extra2t">Suvenirlar</h3><p data-i="extra2p">Mahalliy bozorlar va suvenir do‘konlarida xalq amaliy san’ati buyumlarini topish mumkin.</p></article>
+    <article><i data-lucide="camera"></i><h3 data-i="extra3t">Foto zonalar</h3><p data-i="extra3p">Shahar bog‘lari, maydonlar va yashil hududlar sayohat fotosuratlari uchun qulay joylar.</p></article>
+    <article><i data-lucide="sprout"></i><h3 data-i="extra4t">Agroturizm</h3><p data-i="extra4p">Sirdaryo viloyatida bog‘, uzumzor va poliz xo‘jaliklariga asoslangan agroturizm imkoniyatlari mavjud.</p></article>
+  </div>
+</section>
+
+<section id="contact" class="contactSection">
+  <div class="contactIntro"><span class="eyebrow" data-i="contactEy">ALOQA</span><h2 data-i="contactTitle">Biz bilan bog‘laning</h2><p data-i="contactText">Guliston 360° loyihasi bo‘yicha takliflar, 360° panoramalar yoki hamkorlik masalalarida murojaat qilishingiz mumkin.</p></div>
+  <div class="contactGrid">
+    <a href="tel:+998996676223"><i data-lucide="phone"></i><div><small data-i="phone">Telefon</small><b>+998 99 667 62 23</b></div></a>
+    <a href="https://t.me/Husenov_Jahongir" target="_blank"><i data-lucide="send"></i><div><small>Telegram</small><b>Husenov_Jahongir</b></div></a>
+    <a href="https://instagram.com/Husenov_Jahongir" target="_blank"><i data-lucide="instagram"></i><div><small>Instagram</small><b>Husenov_Jahongir</b></div></a>
+    <a href="mailto:husenovjahongir27@gmail.com"><i data-lucide="mail"></i><div><small>Email</small><b>husenovjahongir27@gmail.com</b></div></a>
+  </div>
+</section>
 </main>
 
-<footer><div><b>Guliston 360°</b><span>© 2026. Virtual sayohat platformasi.</span></div><div><a href="#about">Loyiha</a><a href="#places">Joylar</a><a href="#tour">360°</a></div></footer>
+<footer>
+  <div><strong>GULISTON <b>360°</b></strong><span data-i="footer">© 2026 Guliston 360° — Virtual sayohat platformasi</span></div>
+  <div class="footerLinks"><a href="#places" data-i="places">Joylar</a><a href="#map" data-i="map">Xarita</a><a href="#contact" data-i="contact">Aloqa</a></div>
+</footer>
 
 <div id="modal" class="modal"><div class="modalBox"><button class="close" onclick="closeModal()">×</button><div id="modalContent"></div></div></div>
-<div id="mobileMenu" class="mobileMenu"><button onclick="closeMenu()">×</button><a href="#places">Joylar</a><a href="#mapSection">Xarita</a><a href="#tour">360° tur</a><a href="#about">Loyiha</a></div>
 
+<script src="https://unpkg.com/lucide@latest"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.js"></script>
 <script src="app.js"></script>
-</body></html>
+</body>
+</html>
