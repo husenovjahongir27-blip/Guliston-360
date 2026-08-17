@@ -7,7 +7,7 @@
 <meta name="description" content="Guliston shahri bo‘ylab 360° virtual sayohat va interaktiv turizm platformasi.">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.css">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 <header class="topbar">
@@ -23,7 +23,6 @@
     <a href="#about" data-i="about">Loyiha haqida</a>
     <a href="#news" data-i="news">Yangiliklar</a>
     <a href="#services" data-i="services">Xizmatlar</a>
-    <a href="#admin" data-i="admin">Admin</a>
     <a href="#contact" data-i="contact">Aloqa</a>
   </nav>
   <div class="topTools">
@@ -41,32 +40,33 @@
 </header>
 
 <main id="home">
-<section class="tourHero">
+
+<section class="tourHero" id="tour">
   <div class="tourTopLabel"><i data-lucide="map-pin"></i><span id="sceneTitle">Guliston markaziy maydoni</span><small id="sceneCount">1 / 6</small></div>
-
-  <aside class="leftPanel glass">
-    <div class="panelTitle"><i data-lucide="map"></i><strong data-i="placeList">Joylar ro‘yxati</strong></div>
-    <input id="search" class="search" data-ph="search" placeholder="Qidirish...">
-    <div id="sceneList" class="sceneList"></div>
-    <button class="mapButton" onclick="scrollToId('map')"><i data-lucide="map"></i><span data-i="showMap">Xaritada ko‘rish</span></button>
-  </aside>
-
   <div class="panoramaWrap">
-    <div id="panorama"></div>
-    <button class="panoArrow left" onclick="prevScene()"><i data-lucide="chevron-left"></i></button>
-    <button class="panoArrow right" onclick="nextScene()"><i data-lucide="chevron-right"></i></button>
-    <button class="scrollNext" onclick="scrollToId('places')" title="Keyingi bo‘lim"><i data-lucide="chevron-down"></i></button>
+    <div id="panorama" aria-label="360° panorama"></div>
+    <button class="panoArrow left" onclick="prevScene()" aria-label="Oldingi"><i data-lucide="chevron-left"></i></button>
+    <button class="panoArrow right" onclick="nextScene()" aria-label="Keyingi"><i data-lucide="chevron-right"></i></button>
     <div class="panoControls">
-      <button onclick="zoomIn()"><i data-lucide="plus"></i></button>
-      <button onclick="zoomOut()"><i data-lucide="minus"></i></button>
-      <button onclick="toggleFullscreen()"><i data-lucide="maximize"></i></button>
-      <button onclick="toggleAuto()"><i data-lucide="play" id="autoIcon"></i></button>
+      <button onclick="zoomIn()" title="Kattalashtirish"><i data-lucide="plus"></i></button>
+      <button onclick="zoomOut()" title="Kichraytirish"><i data-lucide="minus"></i></button>
+      <button onclick="toggleFullscreen()" title="To‘liq ekran"><i data-lucide="maximize"></i></button>
+      <button onclick="toggleAuto()" title="Avtomatik aylantirish"><i data-lucide="play" id="autoIcon"></i></button>
     </div>
-    <div class="thumbs" id="thumbs"></div>
   </div>
-
-  <aside class="rightPanel glass" id="detailPanel"></aside>
 </section>
+
+<section class="tourObjects" aria-label="360 darajali obyektlar">
+  <div class="tourObjectsHead">
+    <div>
+      <span class="eyebrow" data-i="tourPlacesEy">360° OBYEKTLAR</span>
+      <h2 data-i="tourPlacesTitle">Virtual sayohat joylari</h2>
+    </div>
+    <div class="tourSearchWrap"><i data-lucide="search"></i><input id="search" class="search" data-ph="search" placeholder="Qidirish..."></div>
+  </div>
+  <div id="thumbs" class="tourObjectGrid"></div>
+</section>
+
 
 <section class="featureStrip">
   <div><span class="fIcon green"><i data-lucide="globe-2"></i></span><b data-i="f360">360° Panorama</b><small data-i="f360s">Yuqori sifatli virtual tur</small></div>
@@ -134,84 +134,36 @@
 </section>
 
 
-<section id="admin" class="adminSection">
-  <div class="sectionHead">
-    <div><span class="eyebrow" data-i="adminEy">BOSHQARUV</span><h2 data-i="adminTitle">Admin panel</h2></div>
+<section id="feedback" class="feedbackSection">
+  <div class="feedbackIntro">
+    <span class="eyebrow" data-i="feedbackEy">TAKLIF VA SHIKOYATLAR</span>
+    <h2 data-i="feedbackTitle">Fikringiz biz uchun muhim</h2>
+    <p data-i="feedbackText">Saytdagi xatolik, yangi obyekt, 360° panorama yoki boshqa taklifingizni yuboring. Murojaatingiz loyiha elektron pochtasiga yuboriladi.</p>
+    <div class="feedbackNote"><i data-lucide="mail-check"></i><span>husenovjahongir27@gmail.com</span></div>
   </div>
-
-  <div id="adminLogin" class="adminLogin">
-    <div class="adminLoginCard">
-      <span class="adminBigIcon"><i data-lucide="shield-check"></i></span>
-      <h3 data-i="adminLoginTitle">Admin panelga kirish</h3>
-      <p data-i="adminLoginText">Obyektlar, panoramalar va ma’lumotlarni boshqarish.</p>
-      <input id="adminPassword" type="password" data-ph="adminPasswordPh" placeholder="Parol">
-      <button class="primaryBtn" onclick="adminLogin()"><i data-lucide="log-in"></i><span data-i="login">Kirish</span></button>
-      <small class="adminHint" data-i="adminDemoHint">Standart demo parol: 360admin</small>
+  <form class="feedbackForm" action="https://formsubmit.co/husenovjahongir27@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="Guliston 360° — Taklif yoki shikoyat">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_next" value="https://husenovjahongir27-blip.github.io/Guliston-360/#feedback">
+    <div class="formRow">
+      <label><span data-i="name">Ismingiz</span><input required type="text" name="name" data-ph="namePh" placeholder="Ismingizni kiriting"></label>
+      <label><span data-i="email">Email</span><input required type="email" name="email" data-ph="emailPh" placeholder="Sizning emailingiz"></label>
     </div>
-  </div>
-
-  <div id="adminPanel" class="adminPanel" hidden>
-    <div class="adminToolbar">
-      <div>
-        <strong data-i="adminObjects">Obyektlar boshqaruvi</strong>
-        <small id="adminCount"></small>
-      </div>
-      <div class="adminTools">
-        <button class="secondaryBtn" onclick="newPlace()"><i data-lucide="plus"></i><span data-i="newObject">Yangi obyekt</span></button>
-        <button class="secondaryBtn" onclick="exportPlaces()"><i data-lucide="download"></i><span data-i="export">Eksport</span></button>
-        <label class="secondaryBtn fileBtn"><i data-lucide="upload"></i><span data-i="import">Import</span><input type="file" id="importFile" accept=".json" hidden></label>
-        <button class="secondaryBtn" onclick="adminLogout()"><i data-lucide="log-out"></i><span data-i="logout">Chiqish</span></button>
-      </div>
-    </div>
-
-    <div class="adminGrid">
-      <div class="adminList" id="adminList"></div>
-      <form id="placeForm" class="adminForm" onsubmit="savePlace(event)">
-        <input type="hidden" id="editId">
-        <h3 id="formTitle">Yangi obyekt</h3>
-        <div class="formRow">
-          <label>ID<input id="fId" required pattern="[a-z0-9-]+" placeholder="masalan: guliston-square"></label>
-          <label>Kategoriya<select id="fCat"><option value="history">Tarixiy</option><option value="culture">Madaniy</option><option value="nature">Tabiiy</option><option value="education">Ta’lim</option></select></label>
-        </div>
-        <label>Rasm URL<input id="fImg" required placeholder="https://.../image.jpg"></label>
-        <label>360° panorama URL<input id="fPano" required placeholder="https://.../panorama.jpg"></label>
-        <div class="formRow">
-          <label>Latitude<input id="fLat" required type="number" step="any"></label>
-          <label>Longitude<input id="fLng" required type="number" step="any"></label>
-        </div>
-        <div class="langForm">
-          <b>🇺🇿 O‘zbekcha</b>
-          <input id="fUzTitle" required placeholder="Obyekt nomi">
-          <textarea id="fUzDesc" required placeholder="Qisqa ma’lumot"></textarea>
-          <textarea id="fUzFull" required placeholder="To‘liq ma’lumot"></textarea>
-        </div>
-        <div class="langForm">
-          <b>🇷🇺 Русский</b>
-          <input id="fRuTitle" required placeholder="Название объекта">
-          <textarea id="fRuDesc" required placeholder="Краткое описание"></textarea>
-          <textarea id="fRuFull" required placeholder="Полное описание"></textarea>
-        </div>
-        <div class="langForm">
-          <b>🇬🇧 English</b>
-          <input id="fEnTitle" required placeholder="Object title">
-          <textarea id="fEnDesc" required placeholder="Short description"></textarea>
-          <textarea id="fEnFull" required placeholder="Full description"></textarea>
-        </div>
-        <div class="formRow">
-          <button type="submit" class="primaryBtn"><i data-lucide="save"></i><span data-i="saveObject">Saqlash</span></button>
-          <button type="button" class="secondaryBtn" onclick="clearPlaceForm()"><span data-i="clear">Tozalash</span></button>
-        </div>
-        <small class="adminWarning" data-i="adminLocalWarning">Bu GitHub Pages versiyasida ma’lumotlar brauzer LocalStorage’ida saqlanadi. Umumiy onlayn admin uchun keyin Supabase/Firebase ulash mumkin.</small>
-      </form>
-    </div>
-  </div>
+    <label><span data-i="type">Murojaat turi</span>
+      <select name="type"><option data-i="suggestion">Taklif</option><option data-i="complaint">Shikoyat</option><option data-i="error">Saytdagi xatolik</option><option data-i="other">Boshqa</option></select>
+    </label>
+    <label><span data-i="message">Xabar</span><textarea required name="message" rows="6" data-ph="messagePh" placeholder="Taklif yoki shikoyatingizni yozing..."></textarea></label>
+    <button class="primaryBtn submitBtn" type="submit"><i data-lucide="send"></i><span data-i="sendFeedback">Yuborish</span></button>
+    <small class="formHint" data-i="feedbackHint">Murojaat loyiha elektron pochtasiga yuboriladi.</small>
+  </form>
 </section>
 
-<section id="feedback" class="feedbackSection">
-  <div class="contactIntro"><span class="eyebrow" data-i="contactEy">ALOQA</span><h2 data-i="contactTitle">Biz bilan bog‘laning</h2><p data-i="contactText">Guliston 360° loyihasi bo‘yicha takliflar, 360° panoramalar yoki hamkorlik masalalarida murojaat qilishingiz mumkin.</p></div>
+<section id="contact" class="contactSection">
+  <div class="contactIntro"><span class="eyebrow" data-i="contactEy">ALOQA</span><h2 data-i="contactTitle">Biz bilan bog‘laning</h2><p data-i="contactText">Guliston 360° loyihasi bo‘yicha hamkorlik, 360° panorama va boshqa masalalarda murojaat qilishingiz mumkin.</p></div>
   <div class="contactGrid">
     <a href="tel:+998996676223"><i data-lucide="phone"></i><div><small data-i="phone">Telefon</small><b>+998 99 667 62 23</b></div></a>
-    <a href="https://t.me/Husenov_Jahongir" target="_blank"><i data-lucide="send"></i><div><small>Telegram</small><b>Husenov_Jahongir</b></div></a>
+    <a href="https://t.me/Husenov_Jahongir" target="_blank" rel="noopener"><i data-lucide="send"></i><div><small>Telegram</small><b>Husenov_Jahongir</b></div></a>
     <a href="https://instagram.com/Husenov_Jahongir" target="_blank" rel="noopener"><span class="socialIcon instagramIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span><div><small>Instagram</small><b>Husenov_Jahongir</b></div></a>
     <a href="mailto:husenovjahongir27@gmail.com"><i data-lucide="mail"></i><div><small>Email</small><b>husenovjahongir27@gmail.com</b></div></a>
   </div>
@@ -225,10 +177,10 @@
 
 <div id="modal" class="modal"><div class="modalBox"><button class="close" onclick="closeModal()">×</button><div id="modalContent"></div><div id="qrBox" class="qrBox" hidden><div id="qrCode"></div><small id="qrText"></small></div></div></div>
 
-<script src="https://unpkg.com/lucide@latest"></script>
+<script src="icons.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.js"></script>
-<script src="app.js?v=3"></script>
+<script src="app.js?v=6"></script>
 </body>
 </html>
