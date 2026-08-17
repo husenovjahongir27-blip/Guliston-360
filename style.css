@@ -143,3 +143,14 @@ button [data-lucide]{pointer-events:none}
 body.dark .panoError{background:#12251f;color:#eff8f3}.dark .panoError span{color:#a9bdb4}
 .panoControls{bottom:18px}
 @media(max-width:650px){.panoControls{bottom:12px}}
+
+/* V8 panorama reliability: local fallback is always visible if Pannellum cannot load */
+.fallbackPanoWrap{position:absolute;inset:0;overflow:hidden;background:#123b31;touch-action:none;cursor:grab}
+.fallbackPanoWrap:active{cursor:grabbing}
+.fallbackTrack{position:absolute;top:0;left:0;height:100%;width:200%;display:flex;will-change:transform}
+.fallbackTrack .panoFallback{position:relative;inset:auto;width:50%;height:100%;object-fit:cover;display:block;flex:0 0 50%}
+.fallbackBadge{position:absolute;z-index:8;left:50%;bottom:22px;transform:translateX(-50%);padding:7px 12px;border-radius:20px;background:#10231dcc;color:#fff;font-weight:800;font-size:10px}
+.fallbackArrow{position:absolute;z-index:10;top:50%;transform:translateY(-50%);width:48px;height:48px;border:0;border-radius:50%;background:#ffffffdd;color:#123b31;font-size:30px;line-height:1;cursor:pointer;box-shadow:0 8px 22px #0002}
+.fallbackPrev{left:22px}.fallbackNext{right:22px}
+.panoError{z-index:30}
+@media(max-width:650px){.fallbackArrow{width:42px;height:42px;font-size:26px}.fallbackPrev{left:10px}.fallbackNext{right:10px}}

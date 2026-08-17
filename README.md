@@ -1,4 +1,4 @@
-# GULISTON 360° — GitHub READY V7
+# GULISTON 360° — GitHub READY V8
 
 Bu paket GitHub Pages uchun tayyorlangan.
 
@@ -60,3 +60,6 @@ FormSubmit orqali `husenovjahongir27@gmail.com` manziliga yuboriladi. Birinchi m
 ## Panorama haqida
 
 `pano1.jpg` ... `pano6.jpg` hozir demo rasmlar. Keyinchalik haqiqiy 360° equirectangular panoramalar bilan shu nomdagi fayllarni almashtirish mumkin.
+
+
+V8 panorama viewer: Pannellum + local fallback. Agar CDN yoki Pannellum panorama faylini yuklay olmasa, mahalliy 2:1 panorama oddiy interaktiv fallback ko‘rinishda chiqadi.

@@ -20,6 +20,19 @@ en:{services:"Services",feedback:"Suggestions & complaints",servicesEy:"TOURIST 
 
 let lang=localStorage.getItem("g360_lang")||"uz", favorites=JSON.parse(localStorage.getItem("g360_fav")||"[]"), current=0, viewer, auto=true;
 const $=s=>document.querySelector(s);
+function panoUrl(p){
+  const name=(p.pano||"").split("/").pop();
+  const candidates=[
+    new URL(name,document.baseURI).href,
+    new URL("./assets/panos/"+name,document.baseURI).href
+  ];
+  return candidates[0];
+}
+function panoAltUrl(p){
+  const name=(p.pano||"").split("/").pop();
+  return new URL("./assets/panos/"+name,document.baseURI).href;
+}
+
 function tr(k){return T[lang][k]||EXTRA_T[lang]?.[k]||T.uz[k]||EXTRA_T.uz[k]||k}
 function applyLang(){
  document.documentElement.lang=lang; document.querySelectorAll("[data-i]").forEach(e=>e.textContent=tr(e.dataset.i));
@@ -49,7 +62,7 @@ function renderScenes(){
  $("#thumbs").innerHTML=list.map(p=>{
    const i=places.indexOf(p), fav=favorites.includes(p.id);
    return `<article class="tourObjectCard ${i===current?"active":""}" onclick="loadScene(${i})">
-     <div class="tourObjectImg"><img src="${p.pano}" alt="${p.title[lang]}" loading="lazy" onerror="this.src=places[${i}].pano"><span class="tour360Badge">360°</span></div>
+     <div class="tourObjectImg"><img src="${panoUrl(p)}" alt="${p.title[lang]}" loading="lazy" onerror="this.src=panoUrl(places[${i}])"><span class="tour360Badge">360°</span></div>
      <div class="tourObjectBody"><span class="tag">${catName(p.cat)}</span><h3>${p.title[lang]}</h3><p>${p.desc[lang]}</p>
        <div class="tourObjectActions"><button class="main" onclick="event.stopPropagation();loadScene(${i})">360°</button><button onclick="event.stopPropagation();showDetails('${p.id}')">${tr("details")}</button><button class="heartMini ${fav?"isFav":""}" onclick="event.stopPropagation();toggleFav('${p.id}')" aria-label="${fav?tr("remove"):tr("favorite")}"><i data-lucide="heart"></i></button></div>
      </div>
@@ -69,7 +82,7 @@ function renderDetail(){
 function renderCards(){
  const q=($("#placeSearch")?.value||"").toLowerCase(), c=$("#catFilter")?.value||"all";
  const list=places.filter(p=>(p.title[lang]+" "+p.desc[lang]).toLowerCase().includes(q)&&(c==="all"||p.cat===c));
- $("#placeCards").innerHTML=list.map((p)=>`<article class="placeCard"><img src="${p.pano}" onerror="this.src='${p.img}';"><div class="placeBody"><span class="tag">${catName(p.cat)}</span><h3>${p.title[lang]}</h3><p>${p.desc[lang]}</p><div class="cardActions"><button class="main" onclick="loadScene(${places.indexOf(p)});scrollToId('home')">360°</button><button onclick="showDetails('${p.id}')">${tr("details")}</button><button onclick="toggleFav('${p.id}')">♥</button></div></div></article>`).join("");
+ $("#placeCards").innerHTML=list.map((p)=>`<article class="placeCard"><img src="${panoUrl(p)}" onerror="this.src='${p.img}';"><div class="placeBody"><span class="tag">${catName(p.cat)}</span><h3>${p.title[lang]}</h3><p>${p.desc[lang]}</p><div class="cardActions"><button class="main" onclick="loadScene(${places.indexOf(p)});scrollToId('home')">360°</button><button onclick="showDetails('${p.id}')">${tr("details")}</button><button onclick="toggleFav('${p.id}')">♥</button></div></div></article>`).join("");
 }
 $("#search").oninput=renderScenes;$("#placeSearch").oninput=renderCards;$("#catFilter").onchange=renderCards;
 function loadScene(i){
@@ -102,7 +115,7 @@ $("#favBtn").onclick=()=>{
 };
 function showDetails(id){
  const p=places.find(x=>x.id===id);
- $("#modalContent").innerHTML=`<img class="detailImage" src="${p.pano}" alt="${p.title[lang]}" onerror="this.src='${p.img}';"><span class="tag">${catName(p.cat)}</span><h2>${p.title[lang]}</h2><p style="line-height:1.8;color:#61746b">${p.full[lang]}</p><p style="line-height:1.8;color:#61746b"><b>${lang==="uz"?"Manzil":lang==="ru"?"Адрес":"Location"}:</b> ${p.lat.toFixed(5)}, ${p.lng.toFixed(5)}</p><div class="detailBtns"><button class="primaryBtn" onclick="route('${p.id}')">${tr("route")}</button><button class="secondaryBtn" onclick="speak('${p.id}')">${tr("audio")}</button><button class="secondaryBtn" onclick="share('${p.id}')">${tr("share")}</button><button class="secondaryBtn" onclick="makeQR('${p.id}')"><i data-lucide="qr-code"></i> QR</button></div>`;
+ $("#modalContent").innerHTML=`<img class="detailImage" src="${panoUrl(p)}" alt="${p.title[lang]}" onerror="this.src='${p.img}';"><span class="tag">${catName(p.cat)}</span><h2>${p.title[lang]}</h2><p style="line-height:1.8;color:#61746b">${p.full[lang]}</p><p style="line-height:1.8;color:#61746b"><b>${lang==="uz"?"Manzil":lang==="ru"?"Адрес":"Location"}:</b> ${p.lat.toFixed(5)}, ${p.lng.toFixed(5)}</p><div class="detailBtns"><button class="primaryBtn" onclick="route('${p.id}')">${tr("route")}</button><button class="secondaryBtn" onclick="speak('${p.id}')">${tr("audio")}</button><button class="secondaryBtn" onclick="share('${p.id}')">${tr("share")}</button><button class="secondaryBtn" onclick="makeQR('${p.id}')"><i data-lucide="qr-code"></i> QR</button></div>`;
  $("#qrBox").hidden=true;$("#qrCode").innerHTML="";$("#qrText").textContent="";
  $("#modal").classList.add("show");lucide.createIcons();
 }
@@ -136,34 +149,45 @@ function fitMap(){
 function panoCandidates(p){
   const name=(p.pano||"").split("/").pop();
   const list=[];
-  if(name) list.push(name);
-  if(p.pano && !list.includes(p.pano)) list.push(p.pano);
-  if(name) list.push("assets/panos/"+name);
+  if(name) list.push(new URL(name,document.baseURI).href);
+  if(p.pano){ const u=new URL(p.pano,document.baseURI).href; if(!list.includes(u)) list.push(u); }
+  if(name) list.push(new URL("./assets/panos/"+name,document.baseURI).href);
   return [...new Set(list)];
 }
+let fallbackOffset=0,fallbackDragX=0,fallbackStart=0,fallbackDragging=false;
 function showPanoFallback(){
  const box=$("#panorama"); if(!box)return;
  const p=places[current]; if(!p)return;
- box.innerHTML=`<div class="fallbackPanoWrap"><img id="fallbackPano" class="panoFallback" alt="360° panorama"><div class="fallbackBadge">360°</div></div>`;
- const img=$("#fallbackPano");
- const candidates=panoCandidates(p);
- let n=0;
+ box.innerHTML=`<div class="fallbackPanoWrap" tabindex="0"><div class="fallbackTrack" id="fallbackTrack"><img id="fallbackPanoA" class="panoFallback" alt="360° panorama"><img id="fallbackPanoB" class="panoFallback" alt="" aria-hidden="true"></div><div class="fallbackBadge">360°</div><button class="fallbackArrow fallbackPrev" onclick="fallbackShift(-1)" aria-label="Oldingi">‹</button><button class="fallbackArrow fallbackNext" onclick="fallbackShift(1)" aria-label="Keyingi">›</button></div>`;
+ const a=$("#fallbackPanoA"), b=$("#fallbackPanoB"), track=$("#fallbackTrack");
+ const candidates=panoCandidates(p); let n=0;
  const tryNext=()=>{
    if(n>=candidates.length){
-     img.removeAttribute("src");
-     img.alt="Panorama rasmi yuklanmadi";
-     img.classList.add("panoMissing");
-     $("#panorama").insertAdjacentHTML("beforeend",`<div class="panoError"><b>Panorama yuklanmadi</b><span>pano${current+1}.jpg fayli GitHub repository ROOT qismida bo‘lishi kerak.</span></div>`);
+     a.classList.add("panoMissing");b.classList.add("panoMissing");
+     box.insertAdjacentHTML("beforeend",`<div class="panoError"><b>Panorama rasmi topilmadi</b><span>pano${current+1}.jpg GitHub repository ROOT qismida bo‘lishi kerak.</span></div>`);
      return;
    }
-   img.src=candidates[n++];
+   a.src=candidates[n++];
  };
- img.onload=()=>{
+ a.onload=()=>{
+   b.src=a.src;
+   track.style.transform="translate3d(0,0,0)";
    $("#panoLoading")?.remove();
-   $("#panorama").classList.add("panoReady");
+   bindFallbackDrag();
  };
- img.onerror=tryNext;
- tryNext();
+ a.onerror=tryNext; tryNext();
+}
+function fallbackShift(dir){
+ fallbackOffset += dir*35;
+ const track=$("#fallbackTrack"); if(track) track.style.transform=`translate3d(${fallbackOffset}%,0,0)`;
+}
+function bindFallbackDrag(){
+ const wrap=$("#panorama .fallbackPanoWrap"); if(!wrap||wrap.dataset.bound)return;
+ wrap.dataset.bound="1";
+ const down=e=>{fallbackDragging=true;fallbackStart=e.clientX||e.touches?.[0]?.clientX||0;fallbackDragX=fallbackOffset;wrap.setPointerCapture?.(e.pointerId)};
+ const move=e=>{if(!fallbackDragging)return;const x=e.clientX||e.touches?.[0]?.clientX||0;fallbackOffset=fallbackDragX+(x-fallbackStart)/wrap.clientWidth*100;const t=$("#fallbackTrack");if(t)t.style.transform=`translate3d(${fallbackOffset}%,0,0)`};
+ const up=()=>fallbackDragging=false;
+ wrap.addEventListener("pointerdown",down);wrap.addEventListener("pointermove",move);wrap.addEventListener("pointerup",up);wrap.addEventListener("pointercancel",up);
 }
 function clearPanoLoading(){ $("#panoLoading")?.remove(); }
 function initViewer(){
@@ -177,9 +201,15 @@ function initViewer(){
  const box=$("#panorama"); if(box) box.innerHTML="";
  viewer=pannellum.viewer("panorama",{
    default:{firstScene:p.id,sceneFadeDuration:450,autoRotate:-2,autoLoad:true,showControls:false},
-   scenes:Object.fromEntries(places.map(q=>[q.id,{type:"equirectangular",panorama:q.pano,autoLoad:true}]))
+   scenes:Object.fromEntries(places.map(q=>[q.id,{type:"equirectangular",panorama:panoUrl(q),autoLoad:true}]))
  });
  viewer.on("load",()=>clearPanoLoading());
+ // If the image fails to arrive, Pannellum can leave a dark canvas without a useful error.
+ setTimeout(()=>{
+   const box=$("#panorama");
+   const canvas=box?.querySelector("canvas");
+   if(!canvas || canvas.width<10 || canvas.height<10) showPanoFallback();
+ },2500);
  viewer.on("scenechange",id=>{
    current=places.findIndex(q=>q.id===id);
    renderScenes();renderDetail();lucide.createIcons();
