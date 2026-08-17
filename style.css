@@ -128,3 +128,18 @@ button [data-lucide]{pointer-events:none}
 @media(max-width:650px){.tourHero{height:560px}.tourTopLabel{top:12px;min-width:210px}.panoArrow{width:42px;height:42px}.panoArrow.left{left:12px}.panoArrow.right{right:12px}.panoControls{bottom:12px}.tourObjects{padding:35px 4%}.tourObjectsHead{align-items:stretch;flex-direction:column}.tourSearchWrap{width:100%}.tourObjectGrid{grid-template-columns:1fr}.tourObjectImg{height:190px}}
 
 .panoFallback{width:100%;height:100%;display:block;object-fit:cover}
+
+/* ===== V7 GitHub-ready stability fixes ===== */
+.panoLoading{position:absolute;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;background:#10231d;color:#fff;font-size:12px;letter-spacing:.2px}
+.panoLoading span{width:28px;height:28px;border:3px solid #ffffff40;border-top-color:#fff;border-radius:50%;animation:panoSpin 1s linear infinite}
+@keyframes panoSpin{to{transform:rotate(360deg)}}
+#panorama.panoReady .panoLoading{display:none}
+.fallbackPanoWrap{position:absolute;inset:0;overflow:hidden;background:#10231d}
+.panoFallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.fallbackBadge{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);padding:7px 12px;border-radius:20px;background:#10231dcc;color:#fff;font-weight:800;font-size:10px}
+.panoError{position:absolute;z-index:100;left:50%;top:50%;transform:translate(-50%,-50%);width:min(380px,80%);padding:18px;border-radius:14px;background:#fff;color:#10241d;text-align:center;box-shadow:0 15px 40px #0003}
+.panoError b,.panoError span{display:block}.panoError span{font-size:10px;color:#657870;margin-top:6px;line-height:1.5}
+.panoMissing{opacity:.15}
+body.dark .panoError{background:#12251f;color:#eff8f3}.dark .panoError span{color:#a9bdb4}
+.panoControls{bottom:18px}
+@media(max-width:650px){.panoControls{bottom:12px}}

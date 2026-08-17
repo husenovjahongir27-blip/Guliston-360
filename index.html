@@ -7,7 +7,7 @@
 <meta name="description" content="Guliston shahri bo‘ylab 360° virtual sayohat va interaktiv turizm platformasi.">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.css">
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
 <header class="topbar">
@@ -44,7 +44,7 @@
 <section class="tourHero" id="tour">
   <div class="tourTopLabel"><i data-lucide="map-pin"></i><span id="sceneTitle">Guliston markaziy maydoni</span><small id="sceneCount">1 / 6</small></div>
   <div class="panoramaWrap">
-    <div id="panorama" aria-label="360° panorama"></div>
+    <div id="panorama" aria-label="360° panorama"><div id="panoLoading" class="panoLoading"><span></span><b>360° panorama yuklanmoqda...</b></div></div>
     <button class="panoArrow left" onclick="prevScene()" aria-label="Oldingi"><i data-lucide="chevron-left"></i></button>
     <button class="panoArrow right" onclick="nextScene()" aria-label="Keyingi"><i data-lucide="chevron-right"></i></button>
     <div class="panoControls">
@@ -181,6 +181,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.js"></script>
-<script src="app.js?v=6"></script>
+<script src="app.js?v=7"></script>
 </body>
 </html>

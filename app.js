@@ -1,10 +1,10 @@
 const places=[
-{id:"square",title:{uz:"Markaziy maydon",ru:"Центральная площадь",en:"Central Square"},cat:"history",icon:"landmark",img:"https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=900&q=80",pano:"assets/panos/pano1.jpg",lat:40.4896,lng:68.7812,desc:{uz:"Gulistonning markaziy jamoat makonlaridan biri. Turizm yo‘nalishlarida markaziy maydon shahar sayohatining asosiy nuqtalaridan sifatida ko‘rsatiladi.",ru:"Одна из центральных общественных площадей Гулистана и важная точка городского маршрута.",en:"One of Gulistan’s central public spaces and an important point on city visitor routes."},full:{uz:"Guliston bo‘yicha rasmiy turizm manbalarida asosiy shahar maydoni shaharning diqqatga sazovor joylaridan biri sifatida ko‘rsatiladi. Sirdaryo bo‘yicha tur dasturida ham markaziy maydon tashrif nuqtasi sifatida keltirilgan.",ru:"Официальный туристический ресурс относит главную городскую площадь к достопримечательностям Гулистана. Она также включена в туристический маршрут по Сырдарьинской области.",en:"The official tourism resource lists the main city square among Gulistan’s attractions. It is also included as a stop in the Syrdarya regional itinerary."}},
-{id:"park",title:{uz:"Guliston shahar bog‘i",ru:"Городской парк Гулистана",en:"Gulistan City Park"},cat:"nature",icon:"trees",img:"https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=900&q=80",pano:"assets/panos/pano2.jpg",lat:40.4943,lng:68.7819,desc:{uz:"Sayr, dam olish va shahar yashil hududlarini tomosha qilish uchun maskan.",ru:"Зелёная зона для прогулок и отдыха.",en:"A green urban area for walks and recreation."},full:{uz:"Guliston shahar bog‘i rasmiy turizm manbalarida shaharning asosiy ko‘rish joylaridan biri sifatida qayd etilgan. Sirdaryo bo‘yicha tur dasturida ham shahar bog‘ida sayr qilish ko‘rsatilgan.",ru:"Городской парк Гулистана указан официальным туристическим ресурсом среди основных мест для посещения. Он также входит в маршрут по Сырдарьинской области.",en:"Gulistan City Park is listed by the official tourism resource among the city’s main places to visit and appears in the regional itinerary."}},
-{id:"museum",title:{uz:"Sirdaryo viloyati tarixi va madaniyati davlat muzeyi",ru:"Государственный музей истории и культуры Сырдарьинской области",en:"State Museum of History and Culture of Syrdarya"},cat:"culture",icon:"landmark",img:"https://images.unsplash.com/photo-1564399579883-451a5d44ec08?auto=format&fit=crop&w=900&q=80",pano:"assets/panos/pano3.jpg",lat:40.4890,lng:68.7828,desc:{uz:"Sirdaryo hududining tarixi va madaniyatiga oid ma’lumotlarni jamlaydigan muzey.",ru:"Музей, посвящённый истории и культуре Сырдарьинской области.",en:"A museum focused on the history and culture of Syrdarya region."},full:{uz:"Rasmiy turistik marshrutning 1-kun dasturida Sirdaryo viloyati tarixi va madaniyati davlat muzeyiga tashrif kiritilgan. Virtual platformada bu obyekt uchun ekspozitsiyalar, fotosuratlar, audio gid va 360° ichki panorama qo‘shilishi mumkin.",ru:"Государственный музей истории и культуры Сырдарьинской области включён в программу первого дня официального туристического маршрута. Для виртуального тура можно добавить экспозиции, фото, аудиогид и внутреннюю панораму.",en:"The State Museum of History and Culture of Syrdarya is included in the official day-one itinerary. The virtual platform can later add exhibits, photos, an audio guide and an interior 360° panorama."}},
-{id:"library",title:{uz:"Alisher Navoiy nomidagi “Bilimdonlar maskani”",ru:"«Bilimdonlar maskani» имени Алишера Навои",en:"Alisher Navoi “Bilimdonlar Maskani”"},cat:"education",icon:"book-open",img:"https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=900&q=80",pano:"assets/panos/pano4.jpg",lat:40.4877,lng:68.7801,desc:{uz:"Guliston shahridagi ta’lim va madaniyat yo‘nalishidagi maskan.",ru:"Образовательное и культурное пространство в Гулистане.",en:"An educational and cultural place in Gulistan."},full:{uz:"Sirdaryo bo‘yicha rasmiy 4 kunlik sayohat dasturida 1-kun tashrif nuqtasi sifatida Alisher Navoiy nomidagi “Bilimdonlar maskani” keltirilgan.",ru:"В официальной четырёхдневной программе по Сырдарье «Bilimdonlar Maskani» имени Алишера Навои указан как точка посещения в первый день.",en:"The official four-day Syrdarya itinerary lists Alisher Navoi “Bilimdonlar Maskani” as a day-one stop."}},
-{id:"theatre",title:{uz:"Viloyat musiqali drama teatri",ru:"Областной музыкально-драматический театр",en:"Regional Musical Drama Theatre"},cat:"culture",icon:"drama",img:"https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=900&q=80",pano:"assets/panos/pano5.jpg",lat:40.4908,lng:68.7852,desc:{uz:"Sirdaryo viloyatining madaniy hayotidagi muhim teatr maskani.",ru:"Важная театральная площадка культурной жизни региона.",en:"An important theatre venue in the region’s cultural life."},full:{uz:"Sirdaryo bo‘yicha rasmiy tur dasturida Viloyat musiqali drama teatriga tashrif 3-kun yo‘nalishiga kiritilgan.",ru:"Областной музыкально-драматический театр включён в третий день официального туристического маршрута по Сырдарье.",en:"The Regional Musical Drama Theatre is included in day three of the official Syrdarya tourism itinerary."}},
-{id:"friendship",title:{uz:"O‘zbekiston-Xitoy do‘stlik bog‘i",ru:"Узбекско-китайский парк дружбы",en:"Uzbek-Chinese Friendship Park"},cat:"nature",icon:"trees",img:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",pano:"assets/panos/pano6.jpg",lat:40.492,lng:68.79,desc:{uz:"Sayr va foto uchun qiziqarli yashil hududlardan biri.",ru:"Зелёная зона для прогулок и фотографий.",en:"A green area suited for walks and photography."},full:{uz:"Uzbekistan Travel manbasida O‘zbekiston-Xitoy do‘stlik bog‘ida kechqurun xitoycha uslubdagi xiyobonda sayr qilish mumkinligi qayd etilgan.",ru:"Uzbekistan Travel отмечает возможность вечерней прогулки по аллее в китайском стиле в Узбекско-китайском парке дружбы.",en:"Uzbekistan Travel notes that visitors can enjoy an evening walk along a Chinese-style avenue in the Uzbek-Chinese Friendship Park."}}
+{id:"square",title:{uz:"Markaziy maydon",ru:"Центральная площадь",en:"Central Square"},cat:"history",icon:"landmark",img:"https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=900&q=80",pano:"pano1.jpg",lat:40.4896,lng:68.7812,desc:{uz:"Gulistonning markaziy jamoat makonlaridan biri. Turizm yo‘nalishlarida markaziy maydon shahar sayohatining asosiy nuqtalaridan sifatida ko‘rsatiladi.",ru:"Одна из центральных общественных площадей Гулистана и важная точка городского маршрута.",en:"One of Gulistan’s central public spaces and an important point on city visitor routes."},full:{uz:"Guliston bo‘yicha rasmiy turizm manbalarida asosiy shahar maydoni shaharning diqqatga sazovor joylaridan biri sifatida ko‘rsatiladi. Sirdaryo bo‘yicha tur dasturida ham markaziy maydon tashrif nuqtasi sifatida keltirilgan.",ru:"Официальный туристический ресурс относит главную городскую площадь к достопримечательностям Гулистана. Она также включена в туристический маршрут по Сырдарьинской области.",en:"The official tourism resource lists the main city square among Gulistan’s attractions. It is also included as a stop in the Syrdarya regional itinerary."}},
+{id:"park",title:{uz:"Guliston shahar bog‘i",ru:"Городской парк Гулистана",en:"Gulistan City Park"},cat:"nature",icon:"trees",img:"https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=900&q=80",pano:"pano2.jpg",lat:40.4943,lng:68.7819,desc:{uz:"Sayr, dam olish va shahar yashil hududlarini tomosha qilish uchun maskan.",ru:"Зелёная зона для прогулок и отдыха.",en:"A green urban area for walks and recreation."},full:{uz:"Guliston shahar bog‘i rasmiy turizm manbalarida shaharning asosiy ko‘rish joylaridan biri sifatida qayd etilgan. Sirdaryo bo‘yicha tur dasturida ham shahar bog‘ida sayr qilish ko‘rsatilgan.",ru:"Городской парк Гулистана указан официальным туристическим ресурсом среди основных мест для посещения. Он также входит в маршрут по Сырдарьинской области.",en:"Gulistan City Park is listed by the official tourism resource among the city’s main places to visit and appears in the regional itinerary."}},
+{id:"museum",title:{uz:"Sirdaryo viloyati tarixi va madaniyati davlat muzeyi",ru:"Государственный музей истории и культуры Сырдарьинской области",en:"State Museum of History and Culture of Syrdarya"},cat:"culture",icon:"landmark",img:"https://images.unsplash.com/photo-1564399579883-451a5d44ec08?auto=format&fit=crop&w=900&q=80",pano:"pano3.jpg",lat:40.4890,lng:68.7828,desc:{uz:"Sirdaryo hududining tarixi va madaniyatiga oid ma’lumotlarni jamlaydigan muzey.",ru:"Музей, посвящённый истории и культуре Сырдарьинской области.",en:"A museum focused on the history and culture of Syrdarya region."},full:{uz:"Rasmiy turistik marshrutning 1-kun dasturida Sirdaryo viloyati tarixi va madaniyati davlat muzeyiga tashrif kiritilgan. Virtual platformada bu obyekt uchun ekspozitsiyalar, fotosuratlar, audio gid va 360° ichki panorama qo‘shilishi mumkin.",ru:"Государственный музей истории и культуры Сырдарьинской области включён в программу первого дня официального туристического маршрута. Для виртуального тура можно добавить экспозиции, фото, аудиогид и внутреннюю панораму.",en:"The State Museum of History and Culture of Syrdarya is included in the official day-one itinerary. The virtual platform can later add exhibits, photos, an audio guide and an interior 360° panorama."}},
+{id:"library",title:{uz:"Alisher Navoiy nomidagi “Bilimdonlar maskani”",ru:"«Bilimdonlar maskani» имени Алишера Навои",en:"Alisher Navoi “Bilimdonlar Maskani”"},cat:"education",icon:"book-open",img:"https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=900&q=80",pano:"pano4.jpg",lat:40.4877,lng:68.7801,desc:{uz:"Guliston shahridagi ta’lim va madaniyat yo‘nalishidagi maskan.",ru:"Образовательное и культурное пространство в Гулистане.",en:"An educational and cultural place in Gulistan."},full:{uz:"Sirdaryo bo‘yicha rasmiy 4 kunlik sayohat dasturida 1-kun tashrif nuqtasi sifatida Alisher Navoiy nomidagi “Bilimdonlar maskani” keltirilgan.",ru:"В официальной четырёхдневной программе по Сырдарье «Bilimdonlar Maskani» имени Алишера Навои указан как точка посещения в первый день.",en:"The official four-day Syrdarya itinerary lists Alisher Navoi “Bilimdonlar Maskani” as a day-one stop."}},
+{id:"theatre",title:{uz:"Viloyat musiqali drama teatri",ru:"Областной музыкально-драматический театр",en:"Regional Musical Drama Theatre"},cat:"culture",icon:"drama",img:"https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=900&q=80",pano:"pano5.jpg",lat:40.4908,lng:68.7852,desc:{uz:"Sirdaryo viloyatining madaniy hayotidagi muhim teatr maskani.",ru:"Важная театральная площадка культурной жизни региона.",en:"An important theatre venue in the region’s cultural life."},full:{uz:"Sirdaryo bo‘yicha rasmiy tur dasturida Viloyat musiqali drama teatriga tashrif 3-kun yo‘nalishiga kiritilgan.",ru:"Областной музыкально-драматический театр включён в третий день официального туристического маршрута по Сырдарье.",en:"The Regional Musical Drama Theatre is included in day three of the official Syrdarya tourism itinerary."}},
+{id:"friendship",title:{uz:"O‘zbekiston-Xitoy do‘stlik bog‘i",ru:"Узбекско-китайский парк дружбы",en:"Uzbek-Chinese Friendship Park"},cat:"nature",icon:"trees",img:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",pano:"pano6.jpg",lat:40.492,lng:68.79,desc:{uz:"Sayr va foto uchun qiziqarli yashil hududlardan biri.",ru:"Зелёная зона для прогулок и фотографий.",en:"A green area suited for walks and photography."},full:{uz:"Uzbekistan Travel manbasida O‘zbekiston-Xitoy do‘stlik bog‘ida kechqurun xitoycha uslubdagi xiyobonda sayr qilish mumkinligi qayd etilgan.",ru:"Uzbekistan Travel отмечает возможность вечерней прогулки по аллее в китайском стиле в Узбекско-китайском парке дружбы.",en:"Uzbekistan Travel notes that visitors can enjoy an evening walk along a Chinese-style avenue in the Uzbek-Chinese Friendship Park."}}
 ];
 
 const T={
@@ -49,7 +49,7 @@ function renderScenes(){
  $("#thumbs").innerHTML=list.map(p=>{
    const i=places.indexOf(p), fav=favorites.includes(p.id);
    return `<article class="tourObjectCard ${i===current?"active":""}" onclick="loadScene(${i})">
-     <div class="tourObjectImg"><img src="${p.img}" alt="${p.title[lang]}" loading="lazy" onerror="this.src=places[${i}].pano"><span class="tour360Badge">360°</span></div>
+     <div class="tourObjectImg"><img src="${p.pano}" alt="${p.title[lang]}" loading="lazy" onerror="this.src=places[${i}].pano"><span class="tour360Badge">360°</span></div>
      <div class="tourObjectBody"><span class="tag">${catName(p.cat)}</span><h3>${p.title[lang]}</h3><p>${p.desc[lang]}</p>
        <div class="tourObjectActions"><button class="main" onclick="event.stopPropagation();loadScene(${i})">360°</button><button onclick="event.stopPropagation();showDetails('${p.id}')">${tr("details")}</button><button class="heartMini ${fav?"isFav":""}" onclick="event.stopPropagation();toggleFav('${p.id}')" aria-label="${fav?tr("remove"):tr("favorite")}"><i data-lucide="heart"></i></button></div>
      </div>
@@ -69,7 +69,7 @@ function renderDetail(){
 function renderCards(){
  const q=($("#placeSearch")?.value||"").toLowerCase(), c=$("#catFilter")?.value||"all";
  const list=places.filter(p=>(p.title[lang]+" "+p.desc[lang]).toLowerCase().includes(q)&&(c==="all"||p.cat===c));
- $("#placeCards").innerHTML=list.map((p)=>`<article class="placeCard"><img src="${p.img}" onerror="this.src='${p.pano}';"><div class="placeBody"><span class="tag">${catName(p.cat)}</span><h3>${p.title[lang]}</h3><p>${p.desc[lang]}</p><div class="cardActions"><button class="main" onclick="loadScene(${places.indexOf(p)});scrollToId('home')">360°</button><button onclick="showDetails('${p.id}')">${tr("details")}</button><button onclick="toggleFav('${p.id}')">♥</button></div></div></article>`).join("");
+ $("#placeCards").innerHTML=list.map((p)=>`<article class="placeCard"><img src="${p.pano}" onerror="this.src='${p.img}';"><div class="placeBody"><span class="tag">${catName(p.cat)}</span><h3>${p.title[lang]}</h3><p>${p.desc[lang]}</p><div class="cardActions"><button class="main" onclick="loadScene(${places.indexOf(p)});scrollToId('home')">360°</button><button onclick="showDetails('${p.id}')">${tr("details")}</button><button onclick="toggleFav('${p.id}')">♥</button></div></div></article>`).join("");
 }
 $("#search").oninput=renderScenes;$("#placeSearch").oninput=renderCards;$("#catFilter").onchange=renderCards;
 function loadScene(i){
@@ -102,7 +102,7 @@ $("#favBtn").onclick=()=>{
 };
 function showDetails(id){
  const p=places.find(x=>x.id===id);
- $("#modalContent").innerHTML=`<img class="detailImage" src="${p.img}" alt="${p.title[lang]}"><span class="tag">${catName(p.cat)}</span><h2>${p.title[lang]}</h2><p style="line-height:1.8;color:#61746b">${p.full[lang]}</p><p style="line-height:1.8;color:#61746b"><b>${lang==="uz"?"Manzil":lang==="ru"?"Адрес":"Location"}:</b> ${p.lat.toFixed(5)}, ${p.lng.toFixed(5)}</p><div class="detailBtns"><button class="primaryBtn" onclick="route('${p.id}')">${tr("route")}</button><button class="secondaryBtn" onclick="speak('${p.id}')">${tr("audio")}</button><button class="secondaryBtn" onclick="share('${p.id}')">${tr("share")}</button><button class="secondaryBtn" onclick="makeQR('${p.id}')"><i data-lucide="qr-code"></i> QR</button></div>`;
+ $("#modalContent").innerHTML=`<img class="detailImage" src="${p.pano}" alt="${p.title[lang]}" onerror="this.src='${p.img}';"><span class="tag">${catName(p.cat)}</span><h2>${p.title[lang]}</h2><p style="line-height:1.8;color:#61746b">${p.full[lang]}</p><p style="line-height:1.8;color:#61746b"><b>${lang==="uz"?"Manzil":lang==="ru"?"Адрес":"Location"}:</b> ${p.lat.toFixed(5)}, ${p.lng.toFixed(5)}</p><div class="detailBtns"><button class="primaryBtn" onclick="route('${p.id}')">${tr("route")}</button><button class="secondaryBtn" onclick="speak('${p.id}')">${tr("audio")}</button><button class="secondaryBtn" onclick="share('${p.id}')">${tr("share")}</button><button class="secondaryBtn" onclick="makeQR('${p.id}')"><i data-lucide="qr-code"></i> QR</button></div>`;
  $("#qrBox").hidden=true;$("#qrCode").innerHTML="";$("#qrText").textContent="";
  $("#modal").classList.add("show");lucide.createIcons();
 }
@@ -133,21 +133,55 @@ function fitMap(){
  if(!map){initMap();if(!map)return}
  map.fitBounds(L.latLngBounds(places.map(p=>[p.lat,p.lng])).pad(.15));
 }
+function panoCandidates(p){
+  const name=(p.pano||"").split("/").pop();
+  const list=[];
+  if(name) list.push(name);
+  if(p.pano && !list.includes(p.pano)) list.push(p.pano);
+  if(name) list.push("assets/panos/"+name);
+  return [...new Set(list)];
+}
 function showPanoFallback(){
  const box=$("#panorama"); if(!box)return;
- box.innerHTML=`<img class="panoFallback" src="${places[current].pano}" alt="360° panorama">`;
+ const p=places[current]; if(!p)return;
+ box.innerHTML=`<div class="fallbackPanoWrap"><img id="fallbackPano" class="panoFallback" alt="360° panorama"><div class="fallbackBadge">360°</div></div>`;
+ const img=$("#fallbackPano");
+ const candidates=panoCandidates(p);
+ let n=0;
+ const tryNext=()=>{
+   if(n>=candidates.length){
+     img.removeAttribute("src");
+     img.alt="Panorama rasmi yuklanmadi";
+     img.classList.add("panoMissing");
+     $("#panorama").insertAdjacentHTML("beforeend",`<div class="panoError"><b>Panorama yuklanmadi</b><span>pano${current+1}.jpg fayli GitHub repository ROOT qismida bo‘lishi kerak.</span></div>`);
+     return;
+   }
+   img.src=candidates[n++];
+ };
+ img.onload=()=>{
+   $("#panoLoading")?.remove();
+   $("#panorama").classList.add("panoReady");
+ };
+ img.onerror=tryNext;
+ tryNext();
 }
+function clearPanoLoading(){ $("#panoLoading")?.remove(); }
 function initViewer(){
+ const p=places[current];
+ if(!p){return}
  if(!window.pannellum){
    showPanoFallback();
    return;
  }
+ // Keep the original panorama element clean before Pannellum initializes.
+ const box=$("#panorama"); if(box) box.innerHTML="";
  viewer=pannellum.viewer("panorama",{
-   default:{firstScene:"square",sceneFadeDuration:500,autoRotate:-2,autoLoad:true,showControls:false},
-   scenes:Object.fromEntries(places.map(p=>[p.id,{type:"equirectangular",panorama:p.pano,autoLoad:true}]))
+   default:{firstScene:p.id,sceneFadeDuration:450,autoRotate:-2,autoLoad:true,showControls:false},
+   scenes:Object.fromEntries(places.map(q=>[q.id,{type:"equirectangular",panorama:q.pano,autoLoad:true}]))
  });
+ viewer.on("load",()=>clearPanoLoading());
  viewer.on("scenechange",id=>{
-   current=places.findIndex(p=>p.id===id);
+   current=places.findIndex(q=>q.id===id);
    renderScenes();renderDetail();lucide.createIcons();
  });
  viewer.on("error",()=>showPanoFallback());
@@ -159,4 +193,4 @@ function init(){
  const idx=places.findIndex(p=>p.id===hash);
  if(idx>=0){loadScene(idx)}
 }
-init();
+window.addEventListener("load",()=>init());
